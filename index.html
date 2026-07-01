@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Pengaturan SEO agar muncul di Google -->
+    <title>Portofolio - Mhd.Iqbal | Mahasiswa PWK ITERA</title>
+    <meta name="description" content="Website portofolio resmi Mhd.Iqbal, Mahasiswa Perencanaan Wilayah dan Kota di Institut Teknologi Sumatera (ITERA). Berisi profil, riwayat pendidikan, keahlian, pengalaman organisasi, dan prestasi.">
+    <meta name="keywords" content="Mhd.Iqbal, Muhamad Iqbal, Portofolio, Perencanaan Wilayah dan Kota, PWK ITERA, Mahasiswa ITERA, Padang Pariaman, Juara FLS2N">
+    <meta name="author" content="Mhd.Iqbal">
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Pengaturan Dasar */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+            scroll-behavior: smooth;
+        }
+        body {
+            background-color: #f8fafc;
+            color: #334155;
+            line-height: 1.6;
+        }
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* Navigasi */
+        nav {
+            background-color: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(5px);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            padding: 1rem 5%;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo {
+            font-weight: 700;
+            font-size: 1.5rem;
+            color: #0f172a;
+            letter-spacing: 1px;
+        }
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+        .nav-links a {
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: color 0.3s;
+        }
+        .nav-links a:hover {
+            color: #2563eb;
+        }
+
+        /* Hero Section (Beranda) dengan Sampul */
+        .hero {
+            position: relative;
+            min-height: 100vh;
+            background-color: #f0f9ff;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding-bottom: 60px;
+        }
+        /* Desain Foto Sampul */
+        .cover-banner {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 40vh;
+            min-height: 300px;
+            background-image: url('Sampul linkedin.jpg');
+            background-size: cover;
+            background-position: center;
+            z-index: 0;
+        }
+        /* Gradasi agar sampul menyatu dengan background bawah */
+        .cover-banner::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 150px;
+            background: linear-gradient(to bottom, transparent, #f0f9ff);
+        }
+
+        /* Konten Utama Hero (Di Atas Sampul) */
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            margin-top: calc(40vh - 125px);
+            padding: 0 20px;
+        }
+        .profile-img {
+            width: 220px;
+            height: 250px;
+            object-fit: cover;
+            border-radius: 16px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+            margin-bottom: 20px;
+            border: 6px solid #f0f9ff;
+            background-color: white;
+        }
+        .hero h1 {
+            font-size: 3.2rem;
+            color: #0f172a;
+            margin-bottom: 5px;
+            font-weight: 700;
+        }
+        .hero h2 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: #2563eb;
+            margin-bottom: 25px;
+        }
+        
+        /* Pengaturan Kontak (Link Aktif) */
+        .contact-info {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 30px;
+            font-size: 0.95rem;
+            background: white;
+            padding: 12px 25px;
+            border-radius: 50px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+        }
+        .contact-info span {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        .contact-info a {
+            color: #2563eb;
+            font-weight: 600;
+            transition: color 0.3s;
+        }
+        .contact-info a:hover {
+            color: #1d4ed8;
+            text-decoration: underline;
+        }
+        .contact-separator {
+            color: #cbd5e1;
+        }
+
+        .bio-text {
+            max-width: 850px;
+            color: #475569;
+            margin-bottom: 40px;
+            font-size: 1.05rem;
+            text-align: justify;
+            text-align-last: center;
+            line-height: 1.8;
+        }
+
+        /* Tombol */
+        .btn-container {
+            display: flex;
+            gap: 15px;
+        }
+        .btn {
+            background-color: #2563eb;
+            color: white;
+            padding: 12px 30px;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(37, 99, 235, 0.2);
+            display: inline-block;
+        }
+        .btn:hover {
+            background-color: #1d4ed8;
+            transform: translateY(-2px);
+        }
+        .btn-outline {
+            background-color: transparent;
+            color: #2563eb;
+            border: 2px solid #2563eb;
+        }
+        .btn-outline:hover {
+            background-color: #e0f2fe;
+        }
+
+        /* Bagian Konten Global */
+        section {
+            padding: 90px 5%;
+        }
+        .section-title {
+            text-align: center;
+            font-size: 2.2rem;
+            color: #0f172a;
+            margin-bottom: 60px;
+            position: relative;
+            font-weight: 700;
+        }
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 70px;
+            height: 4px;
+            background-color: #2563eb;
+            margin: 15px auto 0;
+            border-radius: 2px;
+        }
+
+        /* Profil & Keahlian */
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+        .info-card {
+            background: white;
+            padding: 35px;
+            border-radius: 16px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+            border: 1px solid #e2e8f0;
+        }
+        .info-card h3 {
+            color: #0f172a;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #f1f5f9;
+            padding-bottom: 12px;
+            font-size: 1.3rem;
+        }
+        .skill-list {
+            list-style: none;
+        }
+        .skill-list li {
+            margin-bottom: 12px;
+            padding-left: 25px;
+            position: relative;
+            font-size: 0.95rem;
+        }
+        .skill-list li::before {
+            content: '▹';
+            color: #2563eb;
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+            font-size: 1.2rem;
+            top: -2px;
+        }
+
+        /* Pengalaman & Prestasi Section (Timeline) */
+        .timeline {
+            max-width: 900px;
+            margin: 0 auto;
+            position: relative;
+        }
+        .timeline-item {
+            background: white;
+            padding: 30px;
+            border-radius: 16px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+            margin-bottom: 25px;
+            border-left: 5px solid #2563eb;
+            border-right: 1px solid #e2e8f0;
+            border-top: 1px solid #e2e8f0;
+            border-bottom: 1px solid #e2e8f0;
+            transition: transform 0.3s ease;
+        }
+        .timeline-item:hover {
+            transform: translateX(5px);
+            border-left-color: #1d4ed8;
+        }
+        .timeline-item h3 {
+            color: #0f172a;
+            font-size: 1.25rem;
+            margin-bottom: 5px;
+        }
+        .timeline-item h4 {
+            color: #2563eb;
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 12px;
+        }
+        .timeline-item .date {
+            font-size: 0.85rem;
+            color: #64748b;
+            margin-bottom: 15px;
+            display: inline-block;
+            background: #f1f5f9;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-weight: 600;
+        }
+        .timeline-item ul {
+            padding-left: 20px;
+            font-size: 0.95rem;
+            color: #475569;
+        }
+        .timeline-item ul li {
+            margin-bottom: 8px;
+        }
+        .timeline-item p {
+            color: #475569;
+            font-size: 0.95rem;
+            margin-bottom: 15px;
+            line-height: 1.6;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #0f172a;
+            color: #94a3b8;
+            text-align: center;
+            padding: 30px 20px;
+            margin-top: 50px;
+            font-size: 0.9rem;
+        }
+        footer span {
+            color: white;
+            font-weight: 600;
+        }
+
+        /* Responsif */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none; 
+            }
+            .cover-banner {
+                height: 30vh;
+            }
+            .hero-content {
+                margin-top: calc(30vh - 100px);
+            }
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            .hero h2 {
+                font-size: 1.1rem;
+            }
+            .grid-2 {
+                grid-template-columns: 1fr;
+            }
+            .contact-info {
+                flex-direction: column;
+                align-items: center;
+                gap: 10px;
+                border-radius: 16px;
+                padding: 20px;
+            }
+            .contact-separator {
+                display: none;
+            }
+            .btn-container {
+                flex-direction: column;
+                width: 100%;
+                max-width: 300px;
+            }
+            .btn {
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigasi -->
+    <nav>
+        <div class="logo">MHD.IQBAL</div>
+        <div class="nav-links">
+            <a href="#beranda">Beranda</a>
+            <a href="#profil">Pendidikan & Keahlian</a>
+            <a href="#pengalaman">Pengalaman</a>
+            <a href="#prestasi">Prestasi</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="beranda" class="hero">
+        <!-- Foto Sampul (Banner) -->
+        <div class="cover-banner"></div>
+        
+        <!-- Konten Hero -->
+        <div class="hero-content">
+            <img src="Pas Foto.jpg" alt="Foto Profil Mhd.Iqbal" class="profile-img">
+            
+            <h1>Mhd.Iqbal</h1>
+            <h2>Mahasiswa Perencanaan Wilayah dan Kota | ITERA</h2>
+            
+            <!-- Kontak -->
+            <div class="contact-info">
+                <span>NIM: 125220102</span>
+                <span class="contact-separator">|</span>
+                <span>Email: <a href="mailto:mhdiqbal.125220102@student.itera.ac.id">mhdiqbal.125220102@student.itera.ac.id</a></span>
+                <span class="contact-separator">|</span>
+                <span>LinkedIn: <a href="https://linkedin.com/in/Mhdiqbal13" target="_blank">linkedin.com/in/Mhdiqbal13</a></span>
+                <span class="contact-separator">|</span>
+                <span>Instagram: <a href="https://www.instagram.com/emhade.iqbll" target="_blank">@emhade.iqbll</a></span>
+            </div>
+
+            <!-- Bio Profesional -->
+            <p class="bio-text">
+                Perkenalkan, saya Mhd.Iqbal, pemuda asal Padang Pariaman yang lahir pada 13 April 2007. Saat ini, saya tengah menempuh pendidikan sebagai mahasiswa program studi Perencanaan Wilayah dan Kota di Institut Teknologi Sumatera (ITERA). Di samping memfokuskan diri pada dunia akademik, analisis ruang, dan pemetaan wilayah, saya juga memiliki dedikasi tinggi dalam berorganisasi dan berkarya di bidang kreatif. Berbekal pengalaman memimpin divisi hingga menjadi koordinator operasional lapangan di berbagai kepanitiaan berskala institusi, saya terlatih untuk mengelola logistik, merancang strategi mobilisasi, dan memecahkan tantangan secara taktis. Saya merupakan individu yang adaptif, komunikatif, dan selalu mengutamakan kerja sama tim demi tercapainya target secara profesional.
+            </p>
+            
+            <div class="btn-container">
+                <a href="#pengalaman" class="btn">Lihat Pengalaman</a>
+                <a href="#prestasi" class="btn btn-outline">Lihat Prestasi</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Profil & Keahlian Section -->
+    <section id="profil">
+        <h2 class="section-title">Pendidikan & Keahlian</h2>
+        <div class="grid-2">
+            <div class="info-card">
+                <h3>Riwayat Pendidikan</h3>
+                <ul class="skill-list">
+                    <li>
+                        <strong style="font-size: 1.05rem;">Institut Teknologi Sumatera (ITERA)</strong><br>
+                        Program Studi Perencanaan Wilayah dan Kota<br>
+                        <span style="color: #64748b; font-size: 0.85rem; font-weight: 600;">2025 - Sekarang</span>
+                    </li>
+                    <li style="margin-top: 20px;">
+                        <strong style="font-size: 1.05rem;">SMAN 1 Enam Lingkung, Sumatera Barat</strong><br>
+                        Jurusan MIPA<br>
+                        <span style="color: #64748b; font-size: 0.85rem; font-weight: 600;">2022 - 2025</span>
+                    </li>
+                </ul>
+            </div>
+            
+            <div class="info-card">
+                <h3>Keahlian (Skills)</h3>
+                <ul class="skill-list">
+                    <li><strong>Software & Alat Pemetaan:</strong> ArcMap (GIS)</li>
+                    <li><strong>Desain & Media Kreatif:</strong> Canva, Videografi</li>
+                    <li><strong>Aplikasi Perkantoran:</strong> Microsoft Word, PowerPoint</li>
+                    <li><strong>Teknis Operasional:</strong> Koordinasi Lapangan & Mobilisasi Massa</li>
+                    <li><strong>Manajemen Kegiatan:</strong> Pengelolaan Logistik & Penyusunan SOP</li>
+                    <li><strong>Soft Skills Utama:</strong> Kepemimpinan & Manajemen Tim, Komunikasi Interpersonal, Manajemen Waktu, Adaptabilitas & Problem Solving.</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pengalaman Section -->
+    <section id="pengalaman" style="background-color: #f1f5f9;">
+        <h2 class="section-title">Pengalaman Organisasi & Kepanitiaan</h2>
+        <div class="timeline">
+            
+            <div class="timeline-item">
+                <h3>Staf Koordinator Lapangan</h3>
+                <h4>Dies Natalis HMP Mandalanata ITERA ke-13</h4>
+                <span class="date">Juni - Desember 2026</span>
+                <ul>
+                    <li>Menyusun strategi alur pergerakan massa dan memastikan ketertiban situasi lapangan selama rangkaian acara berlangsung.</li>
+                    <li>Mengantisipasi hambatan teknis di lapangan dengan berkoordinasi secara responsif bersama tim eksekutor.</li>
+                </ul>
+            </div>
+
+            <div class="timeline-item">
+                <h3>Staf Operasional Lapangan, Subdivisi Akomodasi</h3>
+                <h4>Ruang Plano 8.0</h4>
+                <span class="date">Juni - November 2026</span>
+                <ul>
+                    <li>Mengatur dan memfasilitasi kebutuhan akomodasi serta transportasi bagi seluruh pengisi acara, tamu undangan, dan panitia pelaksana.</li>
+                    <li>Memastikan kesiapan tempat dan tata letak operasional kegiatan sesuai dengan perencanaan teknis awal.</li>
+                </ul>
+            </div>
+
+            <div class="timeline-item">
+                <h3>Kepala Subdivisi Koordinator Lapangan</h3>
+                <h4>First Gathering Planologi ITERA 2026</h4>
+                <span class="date">Juni - September 2026</span>
+                <ul>
+                    <li>Memimpin dan mengordinasikan pelaksanaan teknis kegiatan di lapangan guna menyelaraskan kinerja anggota tim korlap.</li>
+                    <li>Memastikan mobilisasi seluruh peserta gathering berjalan dengan tertib, aman, dan sesuai dengan jadwal yang telah ditetapkan.</li>
+                </ul>
+            </div>
+
+            <div class="timeline-item">
+                <h3>Staf Operasional, Subdivisi Logistik</h3>
+                <h4>Program Pengenalan Lingkungan Kampus (PPLK) ITERA 2026</h4>
+                <span class="date">Juni - Agustus 2026</span>
+                <ul>
+                    <li>Bertanggung jawab dalam merencanakan, menyediakan, dan mengelola seluruh kebutuhan logistik serta perlengkapan acara berskala institut.</li>
+                    <li>Melakukan koordinasi intensif dengan berbagai divisi terkait guna memastikan distribusi fasilitas pendukung berjalan tepat waktu dan efisien.</li>
+                </ul>
+            </div>
+
+            <div class="timeline-item">
+                <h3>Staf Koordinator Lapangan</h3>
+                <h4>Riuh Wisuda x Wishnight Party HMP Mandalanata ITERA</h4>
+                <span class="date">Juni - Juli 2026</span>
+                <ul>
+                    <li>Mengordinasikan massa riuh dan para wisudawan PWK ITERA agar prosesi perayaan berjalan tertib dan kondusif.</li>
+                    <li>Mengordinasikan pelaksanaan teknis kegiatan di lapangan secara berkala untuk menjaga ketepatan waktu rundown.</li>
+                </ul>
+            </div>
+
+            <div class="timeline-item">
+                <h3>Staf Koordinator Lapangan</h3>
+                <h4>Badan Pengurus Harian (BPH) Planologi ITERA 2025</h4>
+                <span class="date">April 2026 - Sekarang</span>
+                <ul>
+                    <li>Membantu mobilisasi angkatan dalam suatu kegiatan internal maupun eksternal untuk memperkuat soliditas.</li>
+                    <li>Mengordinasikan pergerakan rekan angkatan secara taktis jika terdapat penugasan atau kegiatan langsung di lapangan.</li>
+                </ul>
+            </div>
+
+            <div class="timeline-item">
+                <h3>Staf Koordinator Lapangan</h3>
+                <h4>Malam Keakraban Planologi ITERA 2025</h4>
+                <span class="date">Maret - Mei 2026</span>
+                <ul>
+                    <li>Mengatur mobilisasi dan menjaga ketertiban serta kenyamanan peserta selama seluruh rangkaian malam keakraban berlangsung.</li>
+                    <li>Berkoordinasi secara aktif dengan panitia inti dan divisi lain untuk mendukung kelancaran eksekusi acara di venue.</li>
+                </ul>
+            </div>
+            
+            <div class="timeline-item">
+                <h3>Ketua Pelaksana</h3>
+                <h4>Iftar Jama'i Planologi ITERA 2025</h4>
+                <span class="date">Februari - Maret 2026</span>
+                <ul>
+                    <li>Memimpin, mengarahkan, dan mengordinasikan seluruh rangkaian kegiatan dari tahap perencanaan, eksekusi, hingga evaluasi akhir.</li>
+                    <li>Memastikan program kerja terlaksana dengan sukses sesuai perencanaan strategis, anggaran belanja, dan target sasaran kegiatan.</li>
+                </ul>
+            </div>
+
+            <div class="timeline-item">
+                <h3>Kepala Divisi Publikasi, Desain, dan Dokumentasi</h3>
+                <h4>Pemilihan Ketua Angkatan Planologi ITERA 2025</h4>
+                <span class="date">November 2025 - Februari 2026</span>
+                <ul>
+                    <li>Merancang konsep visual, strategi publikasi media sosial, serta memimpin tim dalam mendokumentasikan seluruh momen penting kegiatan.</li>
+                    <li>Memastikan pembuatan konten publikasi kreatif selesai tepat waktu guna meningkatkan awareness audiens.</li>
+                </ul>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Prestasi Section (Baru) -->
+    <section id="prestasi">
+        <h2 class="section-title">Prestasi & Penghargaan</h2>
+        <div class="timeline">
+            <div class="timeline-item">
+                <h3>Juara 3 Lomba Film Pendek</h3>
+                <h4>Festival dan Lomba Seni Siswa Nasional (FLS2N)</h4>
+                <span class="date">Tingkat Kabupaten Padang Pariaman</span>
+                <p>
+                    Berhasil meraih prestasi sebagai Juara 3 dalam ajang kompetisi bergengsi FLS2N pada cabang Lomba Film Pendek, tergabung dalam tim bersama Jelita Fryzillia Adrieni, dkk.
+                </p>
+                <a href="https://id.scribd.com/document/738712322/SK-PEMENANG-FLS2N-TINGKAT-KAB-PADANG-PARIAMAN" target="_blank" class="btn btn-outline" style="padding: 8px 20px; font-size: 0.9rem;">Lihat SK Pemenang</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 <span>Mhd.Iqbal</span>. Dibuat dengan dedikasi.</p>
+    </footer>
+
+</body>
+</html>
