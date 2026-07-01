@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
+    <!-- Pengaturan SEO agar muncul di Google -->
     <title>Portofolio - Mhd.Iqbal | Mahasiswa PWK ITERA</title>
     <meta name="description" content="Website portofolio resmi Mhd.Iqbal, Mahasiswa Perencanaan Wilayah dan Kota di Institut Teknologi Sumatera (ITERA). Berisi profil, riwayat pendidikan, keahlian, pengalaman organisasi, dan prestasi.">
     <meta name="keywords" content="Mhd.Iqbal, Muhamad Iqbal, Portofolio, Perencanaan Wilayah dan Kota, PWK ITERA, Mahasiswa ITERA, Padang Pariaman, Juara FLS2N">
@@ -23,7 +24,8 @@
             background-color: #f8fafc;
             color: #334155;
             line-height: 1.6;
-            overflow-x: hidden; /* Mencegah layar geser ke samping */
+            overflow-x: hidden; /* Mencegah layar bergeser ke samping */
+            width: 100%;
         }
         a {
             text-decoration: none;
@@ -72,8 +74,9 @@
             flex-direction: column;
             align-items: center;
             padding-bottom: 60px;
+            width: 100%;
         }
-        /* Desain Foto Sampul */
+        /* Desain Foto Sampul (DIUBAH MENJADI .png) */
         .cover-banner {
             position: absolute;
             top: 0;
@@ -81,7 +84,7 @@
             width: 100%;
             height: 40vh;
             min-height: 300px;
-            background-image: url('Sampul linkedin.jpg');
+            background-image: url('Sampul linkedin.png');
             background-size: cover;
             background-position: center;
             z-index: 0;
@@ -132,7 +135,7 @@
             margin-bottom: 25px;
         }
         
-        /* Pengaturan Kontak (Link Aktif) */
+        /* Pengaturan Kontak */
         .contact-info {
             display: flex;
             flex-wrap: wrap;
@@ -156,7 +159,6 @@
             color: #2563eb;
             font-weight: 600;
             transition: color 0.3s;
-            word-break: break-word; /* Mencegah link panjang menembus layar */
         }
         .contact-info a:hover {
             color: #1d4ed8;
@@ -175,6 +177,7 @@
             text-align-last: center;
             line-height: 1.8;
             padding: 0 15px;
+            width: 100%;
         }
 
         /* Tombol */
@@ -208,6 +211,7 @@
         /* Bagian Konten Global */
         section {
             padding: 90px 5%;
+            width: 100%;
         }
         .section-title {
             text-align: center;
@@ -234,6 +238,7 @@
             gap: 40px;
             max-width: 1100px;
             margin: 0 auto;
+            width: 100%;
         }
         .info-card {
             background: white;
@@ -241,6 +246,7 @@
             border-radius: 16px;
             box-shadow: 0 4px 15px rgba(0,0,0,0.03);
             border: 1px solid #e2e8f0;
+            width: 100%;
         }
         .info-card h3 {
             color: #0f172a;
@@ -273,6 +279,7 @@
             max-width: 900px;
             margin: 0 auto;
             position: relative;
+            width: 100%;
         }
         .timeline-item {
             background: white;
@@ -285,6 +292,7 @@
             border-top: 1px solid #e2e8f0;
             border-bottom: 1px solid #e2e8f0;
             transition: transform 0.3s ease;
+            width: 100%;
         }
         .timeline-item:hover {
             transform: translateX(5px);
@@ -334,6 +342,7 @@
             padding: 30px 20px;
             margin-top: 50px;
             font-size: 0.9rem;
+            width: 100%;
         }
         footer span {
             color: white;
@@ -341,17 +350,17 @@
         }
 
         /* ==================================================
-           PENGATURAN RESPONSIF UNTUK HP (MOBILE VIEW)
+           PERBAIKAN TOTAL UNTUK HP (MOBILE VIEW)
            ================================================== */
         @media (max-width: 768px) {
-            /* Navigasi HP */
+            /* Navigasi */
             nav {
                 flex-direction: column;
-                padding: 15px;
+                padding: 15px 10px;
             }
             .nav-links {
-                margin-top: 10px;
-                gap: 15px;
+                margin-top: 12px;
+                gap: 12px;
                 flex-wrap: wrap;
                 justify-content: center;
             }
@@ -359,51 +368,62 @@
                 font-size: 0.85rem;
             }
             
-            /* Hero Section HP */
+            /* Banner & Hero */
             .cover-banner {
-                height: 28vh;
-                min-height: 200px;
+                height: 25vh;
+                min-height: 220px;
             }
             .hero-content {
-                margin-top: calc(28vh - 80px);
-                padding: 0 10px;
+                margin-top: calc(25vh - 75px);
+                padding: 0 15px;
             }
             .profile-img {
-                width: 160px;
-                height: 190px;
+                width: 150px;
+                height: 180px;
                 border-width: 4px;
+                margin-bottom: 15px;
             }
             .hero h1 {
-                font-size: 2.2rem;
+                font-size: 2rem;
             }
             .hero h2 {
                 font-size: 1rem;
-            }
-            .bio-text {
-                font-size: 0.95rem;
-                text-align: center; /* Rata tengah agar rapi di HP */
-                text-align-last: center;
                 padding: 0 10px;
             }
-
-            /* Kontak HP */
+            
+            /* Kontak - Memastikan teks tidak bocor */
             .contact-info {
-                flex-direction: column;
+                flex-direction: column; /* Tersusun ke bawah */
                 align-items: center;
-                gap: 12px;
+                gap: 10px;
                 border-radius: 16px;
-                padding: 20px;
-            }
-            .contact-separator {
-                display: none;
+                padding: 15px;
+                width: 95%; /* Tidak menyentuh ujung layar */
             }
             .contact-info span {
+                display: block; /* Mencegah masalah saat dilipat */
                 text-align: center;
                 width: 100%;
-                justify-content: center;
+            }
+            .contact-info a {
+                word-wrap: break-word; /* Memaksa teks panjang turun */
+                overflow-wrap: break-word;
+                word-break: break-all;
+                display: inline-block;
+            }
+            .contact-separator {
+                display: none; /* Garis pemisah dihilangkan di HP */
             }
             
-            /* Tombol HP */
+            /* Teks Bio */
+            .bio-text {
+                font-size: 0.95rem;
+                text-align: center; /* Rata tengah lebih rapi dari justify di HP */
+                text-align-last: center;
+                padding: 0 5px;
+            }
+
+            /* Tombol */
             .btn-container {
                 flex-direction: column;
                 width: 100%;
@@ -414,32 +434,39 @@
                 width: 100%;
             }
 
-            /* Konten Lainnya HP */
+            /* Konten Lainnya */
             section {
-                padding: 60px 20px;
+                padding: 50px 15px;
             }
             .section-title {
                 font-size: 1.8rem;
-                margin-bottom: 40px;
+                margin-bottom: 35px;
             }
             .grid-2 {
                 grid-template-columns: 1fr;
-                gap: 25px;
+                gap: 20px;
             }
             .info-card {
-                padding: 25px 20px;
+                padding: 25px 15px;
+            }
+            .info-card h3 {
+                font-size: 1.15rem;
             }
             .timeline-item {
                 padding: 20px 15px;
             }
             .timeline-item h3 {
-                font-size: 1.15rem;
+                font-size: 1.1rem;
+            }
+            .timeline-item ul {
+                padding-left: 15px;
             }
         }
     </style>
 </head>
 <body>
 
+    <!-- Navigasi -->
     <nav>
         <div class="logo">MHD.IQBAL</div>
         <div class="nav-links">
@@ -450,25 +477,30 @@
         </div>
     </nav>
 
+    <!-- Hero Section -->
     <section id="beranda" class="hero">
+        <!-- Foto Sampul (Banner) -->
         <div class="cover-banner"></div>
         
+        <!-- Konten Hero -->
         <div class="hero-content">
             <img src="Pas Foto.jpg" alt="Foto Profil Mhd.Iqbal" class="profile-img">
             
             <h1>Mhd.Iqbal</h1>
             <h2>Mahasiswa Perencanaan Wilayah dan Kota | ITERA</h2>
             
+            <!-- Kontak -->
             <div class="contact-info">
                 <span>NIM: 125220102</span>
                 <span class="contact-separator">|</span>
-                <span>Email: <a href="mailto:mhdiqbal.125220102@student.itera.ac.id">mhdiqbal.125220102@student.itera.ac.id</a></span>
+                <span>Email:<br><a href="mailto:mhdiqbal.125220102@student.itera.ac.id">mhdiqbal.125220102@student.itera.ac.id</a></span>
                 <span class="contact-separator">|</span>
-                <span>LinkedIn: <a href="https://linkedin.com/in/Mhdiqbal13" target="_blank">linkedin.com/in/Mhdiqbal13</a></span>
+                <span>LinkedIn:<br><a href="https://linkedin.com/in/Mhdiqbal13" target="_blank">linkedin.com/in/Mhdiqbal13</a></span>
                 <span class="contact-separator">|</span>
                 <span>Instagram: <a href="https://www.instagram.com/emhade.iqbll" target="_blank">@emhade.iqbll</a></span>
             </div>
 
+            <!-- Bio Profesional -->
             <p class="bio-text">
                 Perkenalkan, saya Mhd.Iqbal, pemuda asal Padang Pariaman yang lahir pada 13 April 2007. Saat ini, saya tengah menempuh pendidikan sebagai mahasiswa program studi Perencanaan Wilayah dan Kota di Institut Teknologi Sumatera (ITERA). Di samping memfokuskan diri pada dunia akademik, analisis ruang, dan pemetaan wilayah, saya juga memiliki dedikasi tinggi dalam berorganisasi dan berkarya di bidang kreatif. Berbekal pengalaman memimpin divisi hingga menjadi koordinator operasional lapangan di berbagai kepanitiaan berskala institusi, saya terlatih untuk mengelola logistik, merancang strategi mobilisasi, dan memecahkan tantangan secara taktis. Saya merupakan individu yang adaptif, komunikatif, dan selalu mengutamakan kerja sama tim demi tercapainya target secara profesional.
             </p>
@@ -480,6 +512,7 @@
         </div>
     </section>
 
+    <!-- Profil & Keahlian Section -->
     <section id="profil">
         <h2 class="section-title">Pendidikan & Keahlian</h2>
         <div class="grid-2">
@@ -513,6 +546,7 @@
         </div>
     </section>
 
+    <!-- Pengalaman Section -->
     <section id="pengalaman" style="background-color: #f1f5f9;">
         <h2 class="section-title">Pengalaman Organisasi & Kepanitiaan</h2>
         <div class="timeline">
@@ -610,6 +644,7 @@
         </div>
     </section>
 
+    <!-- Prestasi Section -->
     <section id="prestasi">
         <h2 class="section-title">Prestasi & Penghargaan</h2>
         <div class="timeline">
@@ -620,11 +655,12 @@
                 <p>
                     Berhasil meraih prestasi sebagai Juara 3 dalam ajang kompetisi bergengsi FLS2N pada cabang Lomba Film Pendek, tergabung dalam tim bersama Jelita Fryzillia Adrieni, dkk.
                 </p>
-                <a href="https://id.scribd.com/document/738712322/SK-PEMENANG-FLS2N-TINGKAT-KAB-PADang-PARIAMAN" target="_blank" class="btn btn-outline" style="padding: 8px 20px; font-size: 0.9rem;">Lihat SK Pemenang</a>
+                <a href="https://id.scribd.com/document/738712322/SK-PEMENANG-FLS2N-TINGKAT-KAB-PADANG-PARIAMAN" target="_blank" class="btn btn-outline" style="padding: 8px 20px; font-size: 0.9rem;">Lihat SK Pemenang</a>
             </div>
         </div>
     </section>
 
+    <!-- Footer -->
     <footer>
         <p>&copy; 2026 <span>Mhd.Iqbal</span>. Dibuat dengan dedikasi.</p>
     </footer>
