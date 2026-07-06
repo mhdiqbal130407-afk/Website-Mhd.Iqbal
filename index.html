@@ -305,12 +305,13 @@
             border-right: 1px solid #e2e8f0;
             border-top: 1px solid #e2e8f0;
             border-bottom: 1px solid #e2e8f0;
-            transition: transform 0.3s ease;
+            transition: transform 0.3s ease, border-color 0.3s ease;
             width: 100%;
         }
         .timeline-item:hover {
-            transform: translateX(5px);
+            transform: translateX(5px) scale(1.01);
             border-left-color: #1d4ed8;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.06);
         }
         .timeline-item h3 {
             color: #0f172a;
@@ -324,7 +325,6 @@
             margin-bottom: 12px;
         }
         
-        /* CSS Baru Khusus Link Instagram di Judul Pengalaman */
         .timeline-item h4 a {
             color: inherit;
             transition: color 0.3s ease;
@@ -373,6 +373,41 @@
         footer span {
             color: white;
             font-weight: 600;
+        }
+
+        /* ==================================================
+           PENGATURAN ANIMASI (CSS ANIMATIONS)
+           ================================================== */
+        
+        /* Animasi saat web baru dibuka (Hero Section) */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .animate-load {
+            opacity: 0;
+            animation: fadeInUp 0.8s ease-out forwards;
+        }
+        .delay-1 { animation-delay: 0.2s; }
+        .delay-2 { animation-delay: 0.4s; }
+        .delay-3 { animation-delay: 0.6s; }
+        .delay-4 { animation-delay: 0.8s; }
+
+        /* Animasi saat Scroll (Fade In) */
+        .fade-in-scroll {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+        .fade-in-scroll.is-visible {
+            opacity: 1;
+            transform: translateY(0);
         }
 
         /* ==================================================
@@ -499,13 +534,13 @@
         
         <!-- Konten Hero -->
         <div class="hero-content">
-            <img src="Pas Foto.jpg" alt="Foto Profil Mhd.Iqbal" class="profile-img">
+            <img src="Pas Foto.jpg" alt="Foto Profil Mhd.Iqbal" class="profile-img animate-load">
             
-            <h1>Mhd.Iqbal</h1>
-            <h2>Mahasiswa Perencanaan Wilayah dan Kota | ITERA</h2>
+            <h1 class="animate-load delay-1">Mhd.Iqbal</h1>
+            <h2 class="animate-load delay-1">Mahasiswa Perencanaan Wilayah dan Kota | ITERA</h2>
             
             <!-- Kontak -->
-            <div class="contact-info">
+            <div class="contact-info animate-load delay-2">
                 <span>NIM: 125220102</span>
                 <span class="contact-separator">|</span>
                 <span>Email:<br><a href="mailto:mhdiqbal.125220102@student.itera.ac.id">mhdiqbal.125220102@student.itera.ac.id</a></span>
@@ -516,11 +551,11 @@
             </div>
 
             <!-- Bio Profesional -->
-            <p class="bio-text">
+            <p class="bio-text animate-load delay-3">
                 Perkenalkan, saya Mhd.Iqbal, pemuda asal Padang Pariaman yang lahir pada 13 April 2007. Saat ini, saya tengah menempuh pendidikan sebagai mahasiswa program studi Perencanaan Wilayah dan Kota di Institut Teknologi Sumatera (ITERA). Di samping memfokuskan diri pada dunia akademik, analisis ruang, dan pemetaan wilayah, saya juga memiliki dedikasi tinggi dalam berorganisasi dan berkarya di bidang kreatif. Berbekal pengalaman memimpin divisi hingga menjadi koordinator operasional lapangan di berbagai kepanitiaan berskala institusi, saya terlatih untuk mengelola logistik, merancang strategi mobilisasi, dan memecahkan tantangan secara taktis. Saya merupakan individu yang adaptif, komunikatif, dan selalu mengutamakan kerja sama tim demi tercapainya target secara profesional.
             </p>
             
-            <div class="btn-container">
+            <div class="btn-container animate-load delay-4">
                 <a href="#pengalaman" class="btn">Lihat Pengalaman</a>
                 <a href="#prestasi" class="btn btn-outline">Lihat Prestasi</a>
             </div>
@@ -529,9 +564,9 @@
 
     <!-- Profil & Keahlian Section -->
     <section id="profil">
-        <h2 class="section-title">Pendidikan & Keahlian</h2>
+        <h2 class="section-title fade-in-scroll">Pendidikan & Keahlian</h2>
         <div class="grid-2">
-            <div class="info-card">
+            <div class="info-card fade-in-scroll">
                 <h3>Riwayat Pendidikan</h3>
                 <ul class="skill-list">
                     <li>
@@ -547,7 +582,7 @@
                 </ul>
             </div>
             
-            <div class="info-card">
+            <div class="info-card fade-in-scroll">
                 <h3>Keahlian (Skills)</h3>
                 <ul class="skill-list">
                     <li><strong>Software & Alat Pemetaan:</strong> ArcMap (GIS)</li>
@@ -563,10 +598,10 @@
 
     <!-- Pengalaman Section -->
     <section id="pengalaman" style="background-color: #f1f5f9;">
-        <h2 class="section-title">Pengalaman Organisasi & Kepanitiaan</h2>
+        <h2 class="section-title fade-in-scroll">Pengalaman Organisasi & Kepanitiaan</h2>
         <div class="timeline">
             
-            <div class="timeline-item">
+            <div class="timeline-item fade-in-scroll">
                 <h3>Staf Koordinator Lapangan</h3>
                 <h4><a href="https://www.instagram.com/diesnatalishmp" target="_blank">Dies Natalis HMP Mandalanata ITERA ke-13 ↗</a></h4>
                 <span class="date">Juni - Desember 2026</span>
@@ -576,7 +611,7 @@
                 </ul>
             </div>
 
-            <div class="timeline-item">
+            <div class="timeline-item fade-in-scroll">
                 <h3>Staf Operasional Lapangan, Subdivisi Akomodasi</h3>
                 <h4><a href="https://www.instagram.com/ruangplano" target="_blank">Ruang Plano 8.0 ↗</a></h4>
                 <span class="date">Juni - November 2026</span>
@@ -586,7 +621,7 @@
                 </ul>
             </div>
 
-            <div class="timeline-item">
+            <div class="timeline-item fade-in-scroll">
                 <h3>Kepala Subdivisi Koordinator Lapangan</h3>
                 <h4><a href="https://www.instagram.com/fgplanologi" target="_blank">First Gathering Planologi ITERA 2026 ↗</a></h4>
                 <span class="date">Juni - September 2026</span>
@@ -596,7 +631,7 @@
                 </ul>
             </div>
 
-            <div class="timeline-item">
+            <div class="timeline-item fade-in-scroll">
                 <h3>Staf Operasional, Subdivisi Logistik</h3>
                 <h4><a href="https://www.instagram.com/pplkitera" target="_blank">Program Pengenalan Lingkungan Kampus (PPLK) ITERA 2026 ↗</a></h4>
                 <span class="date">Juni - Agustus 2026</span>
@@ -606,7 +641,7 @@
                 </ul>
             </div>
 
-            <div class="timeline-item">
+            <div class="timeline-item fade-in-scroll">
                 <h3>Staf Koordinator Lapangan</h3>
                 <h4><a href="https://www.instagram.com/hmpwisuda" target="_blank">Riuh Wisuda x Wishnight Party HMP Mandalanata ITERA ↗</a></h4>
                 <span class="date">Juni - Juli 2026</span>
@@ -616,7 +651,7 @@
                 </ul>
             </div>
 
-            <div class="timeline-item">
+            <div class="timeline-item fade-in-scroll">
                 <h3>Staf Koordinator Lapangan</h3>
                 <h4><a href="https://www.instagram.com/planologiitera2025" target="_blank">Badan Pengurus Harian (BPH) Planologi ITERA 2025 ↗</a></h4>
                 <span class="date">April 2026 - Sekarang</span>
@@ -626,7 +661,7 @@
                 </ul>
             </div>
 
-            <div class="timeline-item">
+            <div class="timeline-item fade-in-scroll">
                 <h3>Staf Koordinator Lapangan</h3>
                 <h4><a href="https://www.instagram.com/planologiitera2025" target="_blank">Malam Keakraban Planologi ITERA 2025 ↗</a></h4>
                 <span class="date">Maret - Mei 2026</span>
@@ -636,7 +671,7 @@
                 </ul>
             </div>
             
-            <div class="timeline-item">
+            <div class="timeline-item fade-in-scroll">
                 <h3>Ketua Pelaksana</h3>
                 <h4><a href="https://www.instagram.com/planologiitera2025" target="_blank">Iftar Jama'i Planologi ITERA 2025 ↗</a></h4>
                 <span class="date">Februari - Maret 2026</span>
@@ -646,7 +681,7 @@
                 </ul>
             </div>
 
-            <div class="timeline-item">
+            <div class="timeline-item fade-in-scroll">
                 <h3>Kepala Divisi Publikasi, Desain, dan Dokumentasi</h3>
                 <h4><a href="https://www.instagram.com/planologiitera2025" target="_blank">Pemilihan Ketua Angkatan Planologi ITERA 2025 ↗</a></h4>
                 <span class="date">November 2025 - Februari 2026</span>
@@ -661,9 +696,9 @@
 
     <!-- Prestasi Section -->
     <section id="prestasi">
-        <h2 class="section-title">Prestasi & Penghargaan</h2>
+        <h2 class="section-title fade-in-scroll">Prestasi & Penghargaan</h2>
         <div class="timeline">
-            <div class="timeline-item">
+            <div class="timeline-item fade-in-scroll">
                 <h3>Juara 3 Lomba Film Pendek</h3>
                 <h4>Festival dan Lomba Seni Siswa Nasional (FLS2N)</h4>
                 <span class="date">Tingkat Kabupaten Padang Pariaman</span>
@@ -680,5 +715,31 @@
         <p>&copy; 2026 <span>Mhd.Iqbal</span>. Dibuat dengan dedikasi.</p>
     </footer>
 
+    <!-- Script JavaScript untuk Animasi saat Scroll -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const faders = document.querySelectorAll('.fade-in-scroll');
+            
+            const appearOptions = {
+                threshold: 0.15,
+                rootMargin: "0px 0px -50px 0px"
+            };
+
+            const appearOnScroll = new IntersectionObserver(function(entries, appearOnScroll) {
+                entries.forEach(entry => {
+                    if (!entry.isIntersecting) {
+                        return;
+                    } else {
+                        entry.target.classList.add('is-visible');
+                        appearOnScroll.unobserve(entry.target);
+                    }
+                });
+            }, appearOptions);
+
+            faders.forEach(fader => {
+                appearOnScroll.observe(fader);
+            });
+        });
+    </script>
 </body>
 </html>
