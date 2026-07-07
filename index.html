@@ -103,7 +103,7 @@
             font-size: 1.5rem;
             color: var(--heading-color);
             letter-spacing: 1px;
-            z-index: 1001; /* Supaya logo tetap di atas menu saat dibuka */
+            z-index: 1001; 
         }
 
         /* Ikon Hamburger (Garis 3) */
@@ -112,7 +112,7 @@
             flex-direction: column;
             gap: 6px;
             cursor: pointer;
-            z-index: 1001; /* Selalu di atas menu laci */
+            z-index: 1001; 
             padding: 5px;
         }
         .hamburger span {
@@ -146,9 +146,9 @@
             box-shadow: -5px 0 20px var(--shadow-color);
             display: flex;
             flex-direction: column;
-            padding: 90px 30px 30px; /* Padding atas besar agar tidak nabrak header */
+            padding: 90px 30px 30px; 
             transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            z-index: 999; /* Tepat di bawah navbar header */
+            z-index: 999; 
             overflow-y: auto;
         }
         .nav-menu.active {
@@ -207,10 +207,10 @@
         .menu-action-btn.email-btn:hover {
             background-color: var(--primary-hover);
             transform: translateY(-2px);
-            padding-left: 20px; /* Reset padding hover */
+            padding-left: 20px; 
         }
 
-        /* Overlay Gelap saat menu terbuka (opsional tapi bagus) */
+        /* Overlay Gelap saat menu terbuka */
         .menu-overlay {
             position: fixed;
             top: 0;
@@ -662,7 +662,7 @@
         }
 
         /* ==================================================
-           RESPONSIF UNTUK HP (MOBILE VIEW)
+           RESPONSIF UNTUK HP (MOBILE VIEW) - DIPERBAIKI RATA KIRI KANAN
            ================================================== */
         @media (max-width: 768px) {
             nav { padding: 15px 5%; }
@@ -682,7 +682,15 @@
             .contact-info span { display: block; text-align: center; width: 100%; }
             .contact-info a { word-break: break-all; display: inline-block; }
             .contact-separator { display: none; }
-            .bio-text { font-size: 0.95rem; text-align: center; text-align-last: center; padding: 0 5px; }
+            
+            /* PERBAIKAN RATA KIRI KANAN (JUSTIFY) UNTUK TEKS BIO DI HP */
+            .bio-text { 
+                font-size: 0.95rem; 
+                text-align: justify; 
+                text-align-last: center; 
+                padding: 0 15px; 
+            }
+
             .btn-container { flex-direction: column; width: 100%; max-width: 250px; }
             .btn { text-align: center; width: 100%; }
             section { padding: 50px 15px; }
@@ -1037,9 +1045,6 @@
                     sunIcon.style.display = 'none';
                     themeText.textContent = 'Mode Gelap';
                 }
-                
-                // Opsional: Tutup menu laci setelah mengganti tema (hapus "//" di bawah jika ingin aktif)
-                // toggleMenu(); 
             });
 
             // 3. Logika Efek Mengetik (Typing Effect)
