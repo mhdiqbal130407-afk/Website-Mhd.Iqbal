@@ -5,16 +5,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    <!-- Pengaturan SEO agar muncul di Google -->
     <title>Portofolio - Mhd.Iqbal | Mahasiswa PWK ITERA</title>
     <meta name="description" content="Website portofolio resmi Mhd.Iqbal, Mahasiswa Perencanaan Wilayah dan Kota di Institut Teknologi Sumatera (ITERA). Berisi profil, riwayat pendidikan, keahlian, pengalaman organisasi, dan prestasi.">
     <meta name="keywords" content="Mhd.Iqbal, Muhamad Iqbal, Portofolio, Perencanaan Wilayah dan Kota, PWK ITERA, Mahasiswa ITERA, Padang Pariaman, Juara FLS2N">
     <meta name="author" content="Mhd.Iqbal">
     
-    <!-- Ikon/Logo Website (Favicon) -->
     <link rel="icon" type="image/jpeg" href="logo.jpg">
 
-    <!-- Nama Website Asli untuk Google -->
     <meta property="og:site_name" content="Portofolio Mhd.Iqbal">
     <script type="application/ld+json">
     {
@@ -312,38 +309,53 @@
             50% { opacity: 0; }
         }
         
-        /* Pengaturan Kontak */
+        /* ==================================================
+           PERBAIKAN PENGATURAN KONTAK (DESKTOP & HP RAPI)
+           ================================================== */
         .contact-info {
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
-            gap: 15px;
-            margin-bottom: 30px;
-            font-size: 0.95rem;
             background: var(--card-bg);
-            padding: 12px 25px;
+            padding: 10px 20px;
             border-radius: 50px;
             box-shadow: 0 4px 10px var(--shadow-color);
+            margin-bottom: 30px;
             width: 100%;
-            max-width: 850px;
+            max-width: 900px;
             transition: background-color 0.3s ease;
         }
-        .contact-info span {
+        .contact-item {
             display: flex;
             align-items: center;
-            gap: 5px;
+            padding: 10px 20px;
+            position: relative;
+            font-size: 0.95rem;
         }
-        .contact-info a {
+        /* Garis Vertikal Pemisah untuk Laptop */
+        .contact-item:not(:last-child)::after {
+            content: '';
+            position: absolute;
+            right: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 1px;
+            height: 20px;
+            background-color: var(--border-color);
+        }
+        .contact-label {
+            font-weight: 600;
+            margin-right: 6px;
+            color: var(--text-muted);
+        }
+        .contact-value a {
             color: var(--primary-color);
             font-weight: 600;
             transition: color 0.3s;
         }
-        .contact-info a:hover {
+        .contact-value a:hover {
             color: var(--primary-hover);
             text-decoration: underline;
-        }
-        .contact-separator {
-            color: var(--border-color);
         }
 
         .bio-text {
@@ -662,7 +674,7 @@
         }
 
         /* ==================================================
-           RESPONSIF UNTUK HP (MOBILE VIEW) - DIPERBAIKI RATA KIRI KANAN
+           RESPONSIF UNTUK HP (MOBILE VIEW)
            ================================================== */
         @media (max-width: 768px) {
             nav { padding: 15px 5%; }
@@ -675,22 +687,46 @@
                 padding: 0 10px; 
                 min-height: 50px; 
             }
-            .contact-info {
-                flex-direction: column; align-items: center; gap: 10px;
-                border-radius: 16px; padding: 15px; width: 95%;
-            }
-            .contact-info span { display: block; text-align: center; width: 100%; }
-            .contact-info a { word-break: break-all; display: inline-block; }
-            .contact-separator { display: none; }
             
-            /* PERBAIKAN RATA KIRI KANAN (JUSTIFY) UNTUK TEKS BIO DI HP */
+            /* PENGATURAN KONTAK HP YANG SANGAT RAPI */
+            .contact-info {
+                flex-direction: column;
+                border-radius: 16px; 
+                padding: 10px 20px; 
+                gap: 0;
+                width: 95%;
+            }
+            .contact-item {
+                flex-direction: column;
+                padding: 15px 0;
+                text-align: center;
+            }
+            /* Ubah garis vertikal jadi horizontal di HP */
+            .contact-item:not(:last-child)::after {
+                width: 100%;
+                height: 1px;
+                top: auto;
+                bottom: 0;
+                right: auto;
+                transform: none;
+                background-color: var(--border-color);
+            }
+            .contact-label {
+                margin-right: 0;
+                margin-bottom: 5px;
+                font-size: 0.85rem;
+            }
+            .contact-value a { 
+                word-wrap: break-word; 
+                word-break: break-all; 
+            }
+
             .bio-text { 
                 font-size: 0.95rem; 
                 text-align: justify; 
                 text-align-last: center; 
                 padding: 0 15px; 
             }
-
             .btn-container { flex-direction: column; width: 100%; max-width: 250px; }
             .btn { text-align: center; width: 100%; }
             section { padding: 50px 15px; }
@@ -704,34 +740,27 @@
 </head>
 <body>
 
-    <!-- Overlay Gelap (Background blur/gelap saat menu dibuka) -->
     <div class="menu-overlay" id="menu-overlay"></div>
 
-    <!-- Navigasi Super Clean -->
     <nav>
         <div class="logo">MHD.IQBAL</div>
         
-        <!-- Ikon Garis 3 (Hamburger Menu) -->
         <div class="hamburger" id="hamburger-menu">
             <span></span>
             <span></span>
             <span></span>
         </div>
         
-        <!-- Daftar Isi / Laci Menu -->
         <div class="nav-menu" id="nav-menu">
             <a href="#beranda" class="nav-link">Beranda</a>
             <a href="#profil" class="nav-link">Keahlian</a>
             <a href="#pengalaman" class="nav-link">Pengalaman</a>
             <a href="#prestasi" class="nav-link">Prestasi</a>
             
-            <!-- Tombol Toggle Dark Mode di Dalam Menu -->
             <button id="theme-toggle" class="menu-action-btn" title="Ganti Tema">
-                <!-- Ikon Bulan -->
                 <svg id="moon-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                     <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
                 </svg>
-                <!-- Ikon Matahari (Tersembunyi Awalnya) -->
                 <svg id="sun-icon" style="display: none;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                     <circle cx="12" cy="12" r="5"></circle>
                     <line x1="12" y1="1" x2="12" y2="3"></line>
@@ -746,7 +775,6 @@
                 <span id="theme-text">Mode Gelap</span>
             </button>
             
-            <!-- Tombol Kirim Email di Dalam Menu -->
             <a href="mailto:mhdiqbal.125220102@student.itera.ac.id" class="menu-action-btn email-btn">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15a2.25 2.25 0 0 1-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75" />
@@ -756,24 +784,31 @@
         </div>
     </nav>
 
-    <!-- Hero Section -->
     <section id="beranda" class="hero">
         <div class="cover-banner"></div>
         <div class="hero-content">
             <img src="Pas Foto.jpg" alt="Foto Profil Mhd.Iqbal" class="profile-img animate-load">
             
             <h1 class="animate-load delay-1">Mhd.Iqbal</h1>
-            <!-- Teks Animasi Mesin Tik -->
             <h2 class="animate-load delay-1"><span id="typed-text"></span><span class="cursor">|</span></h2>
             
             <div class="contact-info animate-load delay-2">
-                <span>NIM: 125220102</span>
-                <span class="contact-separator">|</span>
-                <span>Email:<br><a href="mailto:mhdiqbal.125220102@student.itera.ac.id">mhdiqbal.125220102@student.itera.ac.id</a></span>
-                <span class="contact-separator">|</span>
-                <span>LinkedIn:<br><a href="https://linkedin.com/in/Mhdiqbal13" target="_blank">linkedin.com/in/Mhdiqbal13</a></span>
-                <span class="contact-separator">|</span>
-                <span>Instagram: <a href="https://www.instagram.com/emhade.iqbll" target="_blank">@emhade.iqbll</a></span>
+                <div class="contact-item">
+                    <span class="contact-label">NIM:</span>
+                    <span class="contact-value">125220102</span>
+                </div>
+                <div class="contact-item">
+                    <span class="contact-label">Email:</span>
+                    <span class="contact-value"><a href="mailto:mhdiqbal.125220102@student.itera.ac.id">mhdiqbal.125220102@student.itera.ac.id</a></span>
+                </div>
+                <div class="contact-item">
+                    <span class="contact-label">LinkedIn:</span>
+                    <span class="contact-value"><a href="https://linkedin.com/in/Mhdiqbal13" target="_blank">linkedin.com/in/Mhdiqbal13</a></span>
+                </div>
+                <div class="contact-item">
+                    <span class="contact-label">Instagram:</span>
+                    <span class="contact-value"><a href="https://www.instagram.com/emhade.iqbll" target="_blank">@emhade.iqbll</a></span>
+                </div>
             </div>
 
             <p class="bio-text animate-load delay-3">
@@ -787,7 +822,6 @@
         </div>
     </section>
 
-    <!-- Profil & Keahlian Section -->
     <section id="profil">
         <h2 class="section-title fade-in-scroll">Pendidikan & Keahlian</h2>
         <div class="grid-2">
@@ -832,7 +866,6 @@
         </div>
     </section>
 
-    <!-- Pengalaman Section -->
     <section id="pengalaman">
         <h2 class="section-title fade-in-scroll">Pengalaman Organisasi & Kepanitiaan</h2>
         <div class="timeline">
@@ -930,7 +963,6 @@
         </div>
     </section>
 
-    <!-- Prestasi Section -->
     <section id="prestasi">
         <h2 class="section-title fade-in-scroll">Prestasi & Penghargaan</h2>
         <div class="timeline">
@@ -950,7 +982,6 @@
                 <h4><a href="https://www.instagram.com/ruangplano" target="_blank">Ruang Plano 7.0</a></h4>
                 <span class="date">November 2025</span>
                 
-                <!-- Kotak Slideshow -->
                 <div class="slideshow-container">
                     <div class="mySlides fade-slide-anim">
                         <img src="dokum(1).jpeg" alt="Dokumentasi Volunteer 1">
@@ -985,12 +1016,10 @@
         </div>
     </section>
 
-    <!-- Footer -->
     <footer>
         <p>&copy; 2026 <span>Mhd.Iqbal</span>. Dibuat dengan dedikasi.</p>
     </footer>
 
-    <!-- SCIPTS UTAMA (JAVASCRIPT) -->
     <script>
         document.addEventListener("DOMContentLoaded", function() {
             // 1. Logika Interaksi Sidebar Menu (Garis 3 / Hamburger)
