@@ -27,6 +27,41 @@
 
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
     <style>
+        /* ==================================================
+           TEMA & WARNA (CSS VARIABLES UNTUK DARK MODE)
+           ================================================== */
+        :root {
+            --bg-body: #f8fafc;
+            --text-main: #334155;
+            --text-muted: #475569;
+            --heading-color: #0f172a;
+            --nav-bg: rgba(255, 255, 255, 0.95);
+            --hero-bg: #f0f9ff;
+            --card-bg: #ffffff;
+            --border-color: #e2e8f0;
+            --date-bg: #f1f5f9;
+            --primary-color: #2563eb;
+            --primary-hover: #1d4ed8;
+            --section-alt-bg: #f1f5f9;
+            --shadow-color: rgba(0,0,0,0.05);
+        }
+
+        body.dark-mode {
+            --bg-body: #0f172a;
+            --text-main: #cbd5e1;
+            --text-muted: #94a3b8;
+            --heading-color: #f8fafc;
+            --nav-bg: rgba(15, 23, 42, 0.95);
+            --hero-bg: #1e293b;
+            --card-bg: #1e293b;
+            --border-color: #334155;
+            --date-bg: #334155;
+            --primary-color: #3b82f6;
+            --primary-hover: #60a5fa;
+            --section-alt-bg: #0b1120;
+            --shadow-color: rgba(0,0,0,0.3);
+        }
+
         /* Pengaturan Dasar */
         * {
             margin: 0;
@@ -36,11 +71,12 @@
             scroll-behavior: smooth;
         }
         body {
-            background-color: #f8fafc;
-            color: #334155;
+            background-color: var(--bg-body);
+            color: var(--text-main);
             line-height: 1.6;
             overflow-x: hidden;
             width: 100%;
+            transition: background-color 0.3s ease, color 0.3s ease;
         }
         a {
             text-decoration: none;
@@ -49,9 +85,9 @@
 
         /* Navigasi */
         nav {
-            background-color: rgba(255, 255, 255, 0.95);
+            background-color: var(--nav-bg);
             backdrop-filter: blur(5px);
-            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            box-shadow: 0 2px 4px var(--shadow-color);
             padding: 1rem 5%;
             position: fixed;
             width: 100%;
@@ -60,12 +96,18 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+            transition: background-color 0.3s ease;
         }
         .logo {
             font-weight: 700;
             font-size: 1.5rem;
-            color: #0f172a;
+            color: var(--heading-color);
             letter-spacing: 1px;
+        }
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
         }
         .nav-links {
             display: flex;
@@ -77,19 +119,35 @@
             transition: color 0.3s;
         }
         .nav-links a:hover {
-            color: #2563eb;
+            color: var(--primary-color);
+        }
+        
+        /* Tombol Toggle Dark Mode */
+        .theme-toggle {
+            background: none;
+            border: none;
+            font-size: 1.25rem;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .theme-toggle:hover {
+            transform: scale(1.15) rotate(15deg);
         }
 
-        /* Hero Section (Beranda) dengan Sampul */
+        /* Hero Section */
         .hero {
             position: relative;
             min-height: 100vh;
-            background-color: #f0f9ff;
+            background-color: var(--hero-bg);
             display: flex;
             flex-direction: column;
             align-items: center;
             padding-bottom: 60px;
             width: 100%;
+            transition: background-color 0.3s ease;
         }
         .cover-banner {
             position: absolute;
@@ -110,10 +168,10 @@
             left: 0;
             width: 100%;
             height: 150px;
-            background: linear-gradient(to bottom, transparent, #f0f9ff);
+            background: linear-gradient(to bottom, transparent, var(--hero-bg));
+            transition: background 0.3s ease;
         }
 
-        /* Konten Utama Hero (Di Atas Sampul) */
         .hero-content {
             position: relative;
             z-index: 1;
@@ -131,22 +189,36 @@
             height: 250px;
             object-fit: cover;
             border-radius: 16px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+            box-shadow: 0 10px 25px var(--shadow-color);
             margin-bottom: 20px;
-            border: 6px solid #f0f9ff;
-            background-color: white;
+            border: 6px solid var(--hero-bg);
+            background-color: var(--card-bg);
+            transition: border-color 0.3s ease, background-color 0.3s ease;
         }
         .hero h1 {
             font-size: 3.2rem;
-            color: #0f172a;
+            color: var(--heading-color);
             margin-bottom: 5px;
             font-weight: 700;
         }
+        
+        /* Efek Ketik (Typing Effect) */
         .hero h2 {
             font-size: 1.25rem;
             font-weight: 600;
-            color: #2563eb;
+            color: var(--primary-color);
             margin-bottom: 25px;
+            min-height: 30px;
+        }
+        .cursor {
+            display: inline-block;
+            font-weight: bold;
+            color: var(--primary-color);
+            animation: blink 0.8s infinite;
+        }
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
         }
         
         /* Pengaturan Kontak */
@@ -157,12 +229,13 @@
             gap: 15px;
             margin-bottom: 30px;
             font-size: 0.95rem;
-            background: white;
+            background: var(--card-bg);
             padding: 12px 25px;
             border-radius: 50px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            box-shadow: 0 4px 10px var(--shadow-color);
             width: 100%;
             max-width: 850px;
+            transition: background-color 0.3s ease;
         }
         .contact-info span {
             display: flex;
@@ -170,21 +243,21 @@
             gap: 5px;
         }
         .contact-info a {
-            color: #2563eb;
+            color: var(--primary-color);
             font-weight: 600;
             transition: color 0.3s;
         }
         .contact-info a:hover {
-            color: #1d4ed8;
+            color: var(--primary-hover);
             text-decoration: underline;
         }
         .contact-separator {
-            color: #cbd5e1;
+            color: var(--border-color);
         }
 
         .bio-text {
             max-width: 850px;
-            color: #475569;
+            color: var(--text-muted);
             margin-bottom: 40px;
             font-size: 1.05rem;
             text-align: justify;
@@ -200,26 +273,27 @@
             gap: 15px;
         }
         .btn {
-            background-color: #2563eb;
-            color: white;
+            background-color: var(--primary-color);
+            color: white !important;
             padding: 12px 30px;
             border-radius: 8px;
             font-weight: 600;
             transition: all 0.3s ease;
-            box-shadow: 0 4px 6px rgba(37, 99, 235, 0.2);
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
             display: inline-block;
         }
         .btn:hover {
-            background-color: #1d4ed8;
+            background-color: var(--primary-hover);
             transform: translateY(-2px);
         }
         .btn-outline {
             background-color: transparent;
-            color: #2563eb;
-            border: 2px solid #2563eb;
+            color: var(--primary-color) !important;
+            border: 2px solid var(--primary-color);
         }
         .btn-outline:hover {
-            background-color: #e0f2fe;
+            background-color: var(--primary-color);
+            color: white !important;
         }
 
         /* Bagian Konten Global */
@@ -230,7 +304,7 @@
         .section-title {
             text-align: center;
             font-size: 2.2rem;
-            color: #0f172a;
+            color: var(--heading-color);
             margin-bottom: 60px;
             position: relative;
             font-weight: 700;
@@ -240,7 +314,7 @@
             display: block;
             width: 70px;
             height: 4px;
-            background-color: #2563eb;
+            background-color: var(--primary-color);
             margin: 15px auto 0;
             border-radius: 2px;
         }
@@ -255,29 +329,27 @@
             width: 100%;
         }
         .info-card {
-            background: white;
+            background: var(--card-bg);
             padding: 35px;
             border-radius: 16px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.03);
-            border: 1px solid #e2e8f0;
+            box-shadow: 0 4px 15px var(--shadow-color);
+            border: 1px solid var(--border-color);
             width: 100%;
+            transition: background-color 0.3s ease, border-color 0.3s ease;
         }
         .info-card h3 {
-            color: #0f172a;
+            color: var(--heading-color);
             margin-bottom: 20px;
-            border-bottom: 2px solid #f1f5f9;
+            border-bottom: 2px solid var(--date-bg);
             padding-bottom: 12px;
             font-size: 1.3rem;
         }
         
-        /* CSS Untuk Pendidikan dengan Logo Tersembunyi Tautannya */
         .education-list li {
             padding-left: 0 !important;
             margin-bottom: 20px;
         }
-        .education-list li::before {
-            display: none !important;
-        }
+        .education-list li::before { display: none !important; }
         .hidden-link {
             display: flex;
             align-items: center;
@@ -289,27 +361,34 @@
         .hidden-link:hover {
             color: inherit;
             text-decoration: none;
+            transform: translateX(5px);
         }
         .edu-logo {
             width: 60px;
             height: 60px;
             object-fit: contain;
             flex-shrink: 0;
+            background: white; /* Biar logo tetap jelas di dark mode */
+            border-radius: 8px;
+            padding: 2px;
+        }
+        .edu-date {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            font-weight: 600;
         }
 
-        /* List Keahlian (Skills) */
-        .skill-list {
-            list-style: none;
-        }
+        .skill-list { list-style: none; }
         .skill-list li {
             margin-bottom: 12px;
             padding-left: 25px;
             position: relative;
             font-size: 0.95rem;
+            color: var(--text-main);
         }
         .skill-list li::before {
             content: '▹';
-            color: #2563eb;
+            color: var(--primary-color);
             font-weight: bold;
             position: absolute;
             left: 0;
@@ -318,6 +397,10 @@
         }
 
         /* Pengalaman & Prestasi Section (Timeline) */
+        #pengalaman {
+            background-color: var(--section-alt-bg);
+            transition: background-color 0.3s ease;
+        }
         .timeline {
             max-width: 900px;
             margin: 0 auto;
@@ -325,36 +408,35 @@
             width: 100%;
         }
         .timeline-item {
-            background: white;
+            background: var(--card-bg);
             padding: 30px;
             border-radius: 16px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+            box-shadow: 0 4px 15px var(--shadow-color);
             margin-bottom: 25px;
-            border-left: 5px solid #2563eb;
-            border-right: 1px solid #e2e8f0;
-            border-top: 1px solid #e2e8f0;
-            border-bottom: 1px solid #e2e8f0;
-            transition: transform 0.3s ease, border-color 0.3s ease;
+            border-left: 5px solid var(--primary-color);
+            border-right: 1px solid var(--border-color);
+            border-top: 1px solid var(--border-color);
+            border-bottom: 1px solid var(--border-color);
+            transition: transform 0.3s ease, border-color 0.3s ease, background-color 0.3s ease;
             width: 100%;
         }
         .timeline-item:hover {
             transform: translateX(5px) scale(1.01);
-            border-left-color: #1d4ed8;
-            box-shadow: 0 8px 25px rgba(0,0,0,0.06);
+            border-left-color: var(--primary-hover);
+            box-shadow: 0 8px 25px var(--shadow-color);
         }
         .timeline-item h3 {
-            color: #0f172a;
+            color: var(--heading-color);
             font-size: 1.25rem;
             margin-bottom: 5px;
         }
         .timeline-item h4 {
-            color: #2563eb;
+            color: var(--primary-color);
             font-size: 1rem;
             font-weight: 600;
             margin-bottom: 12px;
         }
         
-        /* CSS Link Tersembunyi untuk Judul Kepanitiaan (Tidak ada hover effect) */
         .timeline-item h4 a {
             color: inherit;
             text-decoration: none;
@@ -367,10 +449,10 @@
 
         .timeline-item .date {
             font-size: 0.85rem;
-            color: #64748b;
+            color: var(--text-muted);
             margin-bottom: 15px;
             display: inline-block;
-            background: #f1f5f9;
+            background: var(--date-bg);
             padding: 5px 12px;
             border-radius: 20px;
             font-weight: 600;
@@ -378,21 +460,17 @@
         .timeline-item ul {
             padding-left: 20px;
             font-size: 0.95rem;
-            color: #475569;
+            color: var(--text-muted);
         }
-        .timeline-item ul li {
-            margin-bottom: 8px;
-        }
+        .timeline-item ul li { margin-bottom: 8px; }
         .timeline-item p {
-            color: #475569;
+            color: var(--text-muted);
             font-size: 0.95rem;
             margin-bottom: 15px;
             line-height: 1.6;
         }
 
-        /* ==================================================
-           CSS UNTUK SLIDESHOW (KORSEL) FOTO
-           ================================================== */
+        /* Slideshow Foto */
         .slideshow-container {
             max-width: 100%;
             position: relative;
@@ -401,9 +479,7 @@
             overflow: hidden;
             box-shadow: 0 4px 15px rgba(0,0,0,0.1);
         }
-        .mySlides {
-            display: none;
-        }
+        .mySlides { display: none; }
         .mySlides img {
             width: 100%;
             height: 300px;
@@ -443,14 +519,12 @@
             height: 10px;
             width: 10px;
             margin: 0 3px;
-            background-color: #cbd5e1;
+            background-color: var(--border-color);
             border-radius: 50%;
             display: inline-block;
             transition: background-color 0.3s ease;
         }
-        .active-dot, .dot:hover {
-            background-color: #2563eb;
-        }
+        .active-dot, .dot:hover { background-color: var(--primary-color); }
         .fade-slide-anim {
             animation-name: fadeAnimation;
             animation-duration: 1.5s;
@@ -460,9 +534,35 @@
             to {opacity: 1}
         }
 
+        /* Tombol Mengambang Email (Floating Action Button) */
+        .floating-email {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 60px;
+            height: 60px;
+            background-color: var(--primary-color);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 6px 15px rgba(0,0,0,0.3);
+            z-index: 1000;
+            transition: transform 0.3s ease, background-color 0.3s ease;
+        }
+        .floating-email:hover {
+            transform: scale(1.1) translateY(-5px);
+            background-color: var(--primary-hover);
+        }
+        .floating-email svg {
+            width: 30px;
+            height: 30px;
+        }
+
         /* Footer */
         footer {
-            background-color: #0f172a;
+            background-color: #0b1120;
             color: #94a3b8;
             text-align: center;
             padding: 30px 20px;
@@ -475,23 +575,12 @@
             font-weight: 600;
         }
 
-        /* ==================================================
-           PENGATURAN ANIMASI (CSS ANIMATIONS SCROLL)
-           ================================================== */
+        /* Animasi CSS (Scroll) */
         @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
         }
-        .animate-load {
-            opacity: 0;
-            animation: fadeInUp 0.8s ease-out forwards;
-        }
+        .animate-load { opacity: 0; animation: fadeInUp 0.8s ease-out forwards; }
         .delay-1 { animation-delay: 0.2s; }
         .delay-2 { animation-delay: 0.4s; }
         .delay-3 { animation-delay: 0.6s; }
@@ -508,21 +597,21 @@
         }
 
         /* ==================================================
-           PERBAIKAN TOTAL UNTUK HP (MOBILE VIEW)
+           RESPONSIF UNTUK HP (MOBILE VIEW)
            ================================================== */
         @media (max-width: 768px) {
             nav {
                 flex-direction: column;
                 padding: 15px 10px;
+                gap: 15px;
+            }
+            .nav-right {
+                flex-direction: column;
+                gap: 10px;
             }
             .nav-links {
-                margin-top: 12px;
-                gap: 12px;
                 flex-wrap: wrap;
                 justify-content: center;
-            }
-            .nav-links a {
-                font-size: 0.85rem;
             }
             .cover-banner {
                 height: 25vh;
@@ -538,13 +627,8 @@
                 border-width: 4px;
                 margin-bottom: 15px;
             }
-            .hero h1 {
-                font-size: 2rem;
-            }
-            .hero h2 {
-                font-size: 1rem;
-                padding: 0 10px;
-            }
+            .hero h1 { font-size: 2rem; }
+            .hero h2 { font-size: 1rem; padding: 0 10px; }
             .contact-info {
                 flex-direction: column;
                 align-items: center;
@@ -553,63 +637,27 @@
                 padding: 15px;
                 width: 95%;
             }
-            .contact-info span {
-                display: block;
-                text-align: center;
-                width: 100%;
+            .contact-info span { display: block; text-align: center; width: 100%; }
+            .contact-info a { word-break: break-all; display: inline-block; }
+            .contact-separator { display: none; }
+            .bio-text { font-size: 0.95rem; text-align: center; text-align-last: center; padding: 0 5px; }
+            .btn-container { flex-direction: column; width: 100%; max-width: 250px; }
+            .btn { text-align: center; width: 100%; }
+            section { padding: 50px 15px; }
+            .section-title { font-size: 1.8rem; margin-bottom: 35px; }
+            .grid-2 { grid-template-columns: 1fr; gap: 20px; }
+            .info-card { padding: 25px 15px; }
+            .timeline-item { padding: 20px 15px; }
+            .mySlides img { height: 200px; }
+            .floating-email {
+                bottom: 20px;
+                right: 20px;
+                width: 50px;
+                height: 50px;
             }
-            .contact-info a {
-                word-wrap: break-word;
-                overflow-wrap: break-word;
-                word-break: break-all;
-                display: inline-block;
-            }
-            .contact-separator {
-                display: none;
-            }
-            .bio-text {
-                font-size: 0.95rem;
-                text-align: center;
-                text-align-last: center;
-                padding: 0 5px;
-            }
-            .btn-container {
-                flex-direction: column;
-                width: 100%;
-                max-width: 250px;
-            }
-            .btn {
-                text-align: center;
-                width: 100%;
-            }
-            section {
-                padding: 50px 15px;
-            }
-            .section-title {
-                font-size: 1.8rem;
-                margin-bottom: 35px;
-            }
-            .grid-2 {
-                grid-template-columns: 1fr;
-                gap: 20px;
-            }
-            .info-card {
-                padding: 25px 15px;
-            }
-            .info-card h3 {
-                font-size: 1.15rem;
-            }
-            .timeline-item {
-                padding: 20px 15px;
-            }
-            .timeline-item h3 {
-                font-size: 1.1rem;
-            }
-            .timeline-item ul {
-                padding-left: 15px;
-            }
-            .mySlides img {
-                height: 200px; /* Foto slideshow lebih pas di HP */
+            .floating-email svg {
+                width: 24px;
+                height: 24px;
             }
         }
     </style>
@@ -619,11 +667,15 @@
     <!-- Navigasi -->
     <nav>
         <div class="logo">MHD.IQBAL</div>
-        <div class="nav-links">
-            <a href="#beranda">Beranda</a>
-            <a href="#profil">Keahlian</a>
-            <a href="#pengalaman">Pengalaman</a>
-            <a href="#prestasi">Prestasi</a>
+        <div class="nav-right">
+            <div class="nav-links">
+                <a href="#beranda">Beranda</a>
+                <a href="#profil">Keahlian</a>
+                <a href="#pengalaman">Pengalaman</a>
+                <a href="#prestasi">Prestasi</a>
+            </div>
+            <!-- Tombol Dark Mode -->
+            <button id="theme-toggle" class="theme-toggle" aria-label="Toggle Dark Mode" title="Ganti Tema">🌙</button>
         </div>
     </nav>
 
@@ -634,7 +686,8 @@
             <img src="Pas Foto.jpg" alt="Foto Profil Mhd.Iqbal" class="profile-img animate-load">
             
             <h1 class="animate-load delay-1">Mhd.Iqbal</h1>
-            <h2 class="animate-load delay-1">Mahasiswa Perencanaan Wilayah dan Kota | ITERA</h2>
+            <!-- Teks Animasi Mesin Tik -->
+            <h2 class="animate-load delay-1"><span id="typed-text"></span><span class="cursor">|</span></h2>
             
             <div class="contact-info animate-load delay-2">
                 <span>NIM: 125220102</span>
@@ -671,7 +724,7 @@
                             <div>
                                 <strong style="font-size: 1.05rem;">Institut Teknologi Sumatera (ITERA)</strong><br>
                                 Program Studi Perencanaan Wilayah dan Kota<br>
-                                <span style="color: #64748b; font-size: 0.85rem; font-weight: 600;">2025 - Sekarang</span>
+                                <span class="edu-date">2025 - Sekarang</span>
                             </div>
                         </a>
                     </li>
@@ -681,7 +734,7 @@
                             <div>
                                 <strong style="font-size: 1.05rem;">SMAN 1 Enam Lingkung, Sumatera Barat</strong><br>
                                 Jurusan MIPA<br>
-                                <span style="color: #64748b; font-size: 0.85rem; font-weight: 600;">2022 - 2025</span>
+                                <span class="edu-date">2022 - 2025</span>
                             </div>
                         </a>
                     </li>
@@ -703,7 +756,7 @@
     </section>
 
     <!-- Pengalaman Section -->
-    <section id="pengalaman" style="background-color: #f1f5f9;">
+    <section id="pengalaman">
         <h2 class="section-title fade-in-scroll">Pengalaman Organisasi & Kepanitiaan</h2>
         <div class="timeline">
             
@@ -815,7 +868,6 @@
                 <a href="https://id.scribd.com/document/738712322/SK-PEMENANG-FLS2N-TINGKAT-KAB-PADANG-PARIAMAN" target="_blank" class="btn btn-outline" style="padding: 8px 20px; font-size: 0.9rem; display: inline-block; margin-top: 10px;">Lihat SK Pemenang</a>
             </div>
 
-            <!-- Pengalaman Volunteer dengan Slideshow -->
             <div class="timeline-item fade-in-scroll">
                 <h3>Volunteer (Aksi Lingkungan)</h3>
                 <h4><a href="https://www.instagram.com/ruangplano" target="_blank">Ruang Plano 7.0</a></h4>
@@ -836,12 +888,10 @@
                         <img src="dokum(4).jpeg" alt="Dokumentasi Volunteer 4">
                     </div>
                     
-                    <!-- Tombol panah manual -->
                     <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
                     <a class="next" onclick="plusSlides(1)">&#10095;</a>
                 </div>
                 
-                <!-- Titik penanda manual -->
                 <div class="dot-container">
                     <span class="dot" onclick="currentSlide(1)"></span> 
                     <span class="dot" onclick="currentSlide(2)"></span> 
@@ -858,48 +908,105 @@
         </div>
     </section>
 
+    <!-- Tombol Mengambang (Floating Action Button) Email -->
+    <a href="mailto:mhdiqbal.125220102@student.itera.ac.id" class="floating-email" title="Kirim Email">
+        <!-- Ikon Surat (SVG) -->
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15a2.25 2.25 0 0 1-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75" />
+        </svg>
+    </a>
+
     <!-- Footer -->
     <footer>
         <p>&copy; 2026 <span>Mhd.Iqbal</span>. Dibuat dengan dedikasi.</p>
     </footer>
 
-    <!-- Script JavaScript untuk Animasi Scroll & Slideshow -->
+    <!-- SCIPTS UTAMA (JAVASCRIPT) -->
     <script>
-        // Logika Animasi Scroll
         document.addEventListener("DOMContentLoaded", function() {
-            const faders = document.querySelectorAll('.fade-in-scroll');
-            
-            const appearOptions = {
-                threshold: 0.15,
-                rootMargin: "0px 0px -50px 0px"
-            };
+            // 1. Logika Mode Gelap (Dark Mode)
+            const themeToggleBtn = document.getElementById('theme-toggle');
+            const body = document.body;
 
+            if (localStorage.getItem('theme') === 'dark') {
+                body.classList.add('dark-mode');
+                themeToggleBtn.textContent = '☀️';
+            }
+
+            themeToggleBtn.addEventListener('click', () => {
+                body.classList.toggle('dark-mode');
+                
+                if (body.classList.contains('dark-mode')) {
+                    localStorage.setItem('theme', 'dark');
+                    themeToggleBtn.textContent = '☀️';
+                } else {
+                    localStorage.setItem('theme', 'light');
+                    themeToggleBtn.textContent = '🌙';
+                }
+            });
+
+            // 2. Logika Efek Mengetik (Typing Effect)
+            const textArray = [
+                "Mahasiswa PWK ITERA",
+                "Event Management & Koordinator Lapangan",
+                "GIS & Spatial Mapping Enthusiast",
+                "Graphic Designer & Videographer"
+            ];
+            let textIndex = 0;
+            let charIndex = 0;
+            let isDeleting = false;
+
+            function typeEffect() {
+                const currentText = textArray[textIndex];
+                const typedTextElement = document.getElementById("typed-text");
+                
+                if (isDeleting) {
+                    typedTextElement.textContent = currentText.substring(0, charIndex - 1);
+                    charIndex--;
+                } else {
+                    typedTextElement.textContent = currentText.substring(0, charIndex + 1);
+                    charIndex++;
+                }
+
+                let typeSpeed = isDeleting ? 40 : 80; // Kecepatan ngetik dan hapus
+
+                if (!isDeleting && charIndex === currentText.length) {
+                    typeSpeed = 2500; // Jeda saat kalimat selesai diketik
+                    isDeleting = true;
+                } else if (isDeleting && charIndex === 0) {
+                    isDeleting = false;
+                    textIndex = (textIndex + 1) % textArray.length;
+                    typeSpeed = 500; // Jeda sebelum mengetik kata baru
+                }
+
+                setTimeout(typeEffect, typeSpeed);
+            }
+            typeEffect(); // Mulai jalankan animasi ketik
+
+            // 3. Logika Animasi Scroll
+            const faders = document.querySelectorAll('.fade-in-scroll');
+            const appearOptions = { threshold: 0.15, rootMargin: "0px 0px -50px 0px" };
             const appearOnScroll = new IntersectionObserver(function(entries, appearOnScroll) {
                 entries.forEach(entry => {
-                    if (!entry.isIntersecting) {
-                        return;
-                    } else {
-                        entry.target.classList.add('is-visible');
-                        appearOnScroll.unobserve(entry.target);
-                    }
+                    if (!entry.isIntersecting) return;
+                    entry.target.classList.add('is-visible');
+                    appearOnScroll.unobserve(entry.target);
                 });
             }, appearOptions);
 
-            faders.forEach(fader => {
-                appearOnScroll.observe(fader);
-            });
+            faders.forEach(fader => { appearOnScroll.observe(fader); });
 
-            // Mulai Slideshow saat web dimuat
+            // 4. Mulai Slideshow saat web dimuat
             initSlideshow();
         });
 
-        // Logika Slideshow Otomatis dan Manual
+        // 5. Logika Fungsi Slideshow
         let slideIndex = 1;
         let slideTimer;
 
         function initSlideshow() {
             showSlides(slideIndex);
-            slideTimer = setInterval(function(){ plusSlides(1) }, 3000); // Ganti gambar tiap 3 detik
+            slideTimer = setInterval(function(){ plusSlides(1) }, 3000);
         }
 
         function plusSlides(n) {
@@ -918,7 +1025,7 @@
             let i;
             let slides = document.getElementsByClassName("mySlides");
             let dots = document.getElementsByClassName("dot");
-            if (!slides.length) return; // Mencegah error jika tidak ada slide
+            if (!slides.length) return; 
             
             if (n > slides.length) {slideIndex = 1}
             if (n < 1) {slideIndex = slides.length}
