@@ -83,19 +83,19 @@
             color: inherit;
         }
 
-        /* Navigasi */
+        /* Navigasi Header Super Clean */
         nav {
             background-color: var(--nav-bg);
             backdrop-filter: blur(5px);
             box-shadow: 0 2px 4px var(--shadow-color);
-            padding: 1rem 5%;
+            padding: 15px 5%;
             position: fixed;
             width: 100%;
             top: 0;
             z-index: 1000;
             display: flex;
+            justify-content: space-between;
             align-items: center;
-            flex-wrap: wrap; /* Sangat penting agar menu HP tidak tabrakan */
             transition: background-color 0.3s ease;
         }
         .logo {
@@ -103,46 +103,129 @@
             font-size: 1.5rem;
             color: var(--heading-color);
             letter-spacing: 1px;
-            margin-right: auto; /* Mendorong elemen lain ke kanan pada Desktop */
+            z-index: 1001; /* Supaya logo tetap di atas menu saat dibuka */
         }
-        .nav-links {
+
+        /* Ikon Hamburger (Garis 3) */
+        .hamburger {
             display: flex;
-            gap: 2rem;
-            margin-right: 2rem;
-        }
-        .nav-links a {
-            font-weight: 600;
-            font-size: 0.95rem;
-            transition: color 0.3s;
-        }
-        .nav-links a:hover {
-            color: var(--primary-color);
-        }
-        
-        /* Tombol Toggle Dark Mode (Desain Elegan) */
-        .theme-toggle {
-            background-color: var(--date-bg);
-            color: var(--text-main);
-            border: 1px solid var(--border-color);
-            border-radius: 50%;
-            width: 42px;
-            height: 42px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
+            flex-direction: column;
+            gap: 6px;
             cursor: pointer;
+            z-index: 1001; /* Selalu di atas menu laci */
+            padding: 5px;
+        }
+        .hamburger span {
+            display: block;
+            width: 30px;
+            height: 3px;
+            background-color: var(--heading-color);
+            border-radius: 3px;
             transition: all 0.3s ease;
         }
-        .theme-toggle:hover {
-            background-color: var(--primary-color);
-            color: white;
-            transform: translateY(-2px);
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        /* Animasi Hamburger Menjadi X */
+        .hamburger.active span:nth-child(1) {
+            transform: translateY(9px) rotate(45deg);
         }
-        /* Penyesuaian ikon SVG di dalam tombol */
-        .theme-toggle svg {
-            width: 20px;
-            height: 20px;
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+        .hamburger.active span:nth-child(3) {
+            transform: translateY(-9px) rotate(-45deg);
+        }
+
+        /* Laci Menu (Sidebar Sliding) */
+        .nav-menu {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 100%;
+            max-width: 320px;
+            height: 100vh;
+            background-color: var(--card-bg);
+            box-shadow: -5px 0 20px var(--shadow-color);
+            display: flex;
+            flex-direction: column;
+            padding: 90px 30px 30px; /* Padding atas besar agar tidak nabrak header */
+            transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            z-index: 999; /* Tepat di bawah navbar header */
+            overflow-y: auto;
+        }
+        .nav-menu.active {
+            right: 0;
+        }
+        
+        /* Desain Isi Menu Laci */
+        .nav-link {
+            font-size: 1.15rem;
+            font-weight: 600;
+            color: var(--heading-color);
+            padding: 16px 0;
+            border-bottom: 1px solid var(--border-color);
+            transition: color 0.3s, padding-left 0.3s;
+        }
+        .nav-link:hover {
+            color: var(--primary-color);
+            padding-left: 10px;
+        }
+        
+        /* Tombol Aksi di Menu (Mode Gelap & Email) */
+        .menu-action-btn {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 16px 0;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--heading-color);
+            background: none;
+            border: none;
+            border-bottom: 1px solid var(--border-color);
+            cursor: pointer;
+            text-align: left;
+            width: 100%;
+            transition: color 0.3s, padding-left 0.3s;
+        }
+        .menu-action-btn:hover {
+            color: var(--primary-color);
+            padding-left: 10px;
+        }
+        .menu-action-btn svg {
+            width: 22px;
+            height: 22px;
+        }
+        .menu-action-btn.email-btn {
+            color: white;
+            background-color: var(--primary-color);
+            border-bottom: none;
+            border-radius: 8px;
+            padding: 14px 20px;
+            margin-top: 25px;
+            justify-content: center;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+        .menu-action-btn.email-btn:hover {
+            background-color: var(--primary-hover);
+            transform: translateY(-2px);
+            padding-left: 20px; /* Reset padding hover */
+        }
+
+        /* Overlay Gelap saat menu terbuka (opsional tapi bagus) */
+        .menu-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background-color: rgba(0,0,0,0.5);
+            z-index: 998;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease;
+        }
+        .menu-overlay.active {
+            opacity: 1;
+            visibility: visible;
         }
 
         /* Hero Section */
@@ -542,32 +625,6 @@
             to {opacity: 1}
         }
 
-        /* Tombol Mengambang Email (Floating Action Button) */
-        .floating-email {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            width: 60px;
-            height: 60px;
-            background-color: var(--primary-color);
-            color: white;
-            border-radius: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            box-shadow: 0 6px 15px rgba(0,0,0,0.3);
-            z-index: 1000;
-            transition: transform 0.3s ease, background-color 0.3s ease;
-        }
-        .floating-email:hover {
-            transform: scale(1.1) translateY(-5px);
-            background-color: var(--primary-hover);
-        }
-        .floating-email svg {
-            width: 30px;
-            height: 30px;
-        }
-
         /* Footer */
         footer {
             background-color: #0b1120;
@@ -605,34 +662,10 @@
         }
 
         /* ==================================================
-           RESPONSIF UNTUK HP (MOBILE VIEW) - TELAH DIPERBAIKI
+           RESPONSIF UNTUK HP (MOBILE VIEW)
            ================================================== */
         @media (max-width: 768px) {
-            nav {
-                padding: 15px 15px;
-                display: flex;
-                flex-wrap: wrap; 
-                justify-content: space-between;
-                align-items: center;
-            }
-            /* Kunci agar Nav Links turun ke bawah, Logo & Tombol di atas */
-            .logo {
-                order: 1;
-                margin-right: auto;
-            }
-            .theme-toggle {
-                order: 2; /* Tetap sebaris dengan Logo di pojok kanan */
-            }
-            .nav-links {
-                order: 3; /* Turun ke baris baru */
-                width: 100%;
-                justify-content: center;
-                margin-top: 15px;
-                margin-right: 0;
-                gap: 15px;
-            }
-            .nav-links a { font-size: 0.85rem; }
-
+            nav { padding: 15px 5%; }
             .cover-banner { height: 25vh; min-height: 220px; }
             .hero-content { margin-top: calc(25vh - 75px); padding: 0 15px; }
             .profile-img { width: 150px; height: 180px; border-width: 4px; margin-bottom: 15px; }
@@ -640,7 +673,7 @@
             .hero h2 { 
                 font-size: 0.95rem; 
                 padding: 0 10px; 
-                min-height: 50px; /* Mencegah layar lompat saat mengetik panjang */
+                min-height: 50px; 
             }
             .contact-info {
                 flex-direction: column; align-items: center; gap: 10px;
@@ -658,43 +691,61 @@
             .info-card { padding: 25px 15px; }
             .timeline-item { padding: 20px 15px; }
             .mySlides img { height: 200px; }
-            .floating-email { bottom: 20px; right: 20px; width: 50px; height: 50px; }
-            .floating-email svg { width: 24px; height: 24px; }
         }
     </style>
 </head>
 <body>
 
-    <!-- Navigasi -->
+    <!-- Overlay Gelap (Background blur/gelap saat menu dibuka) -->
+    <div class="menu-overlay" id="menu-overlay"></div>
+
+    <!-- Navigasi Super Clean -->
     <nav>
         <div class="logo">MHD.IQBAL</div>
         
-        <div class="nav-links">
-            <a href="#beranda">Beranda</a>
-            <a href="#profil">Keahlian</a>
-            <a href="#pengalaman">Pengalaman</a>
-            <a href="#prestasi">Prestasi</a>
+        <!-- Ikon Garis 3 (Hamburger Menu) -->
+        <div class="hamburger" id="hamburger-menu">
+            <span></span>
+            <span></span>
+            <span></span>
         </div>
         
-        <!-- Tombol Dark Mode dengan Ikon SVG Minimalis -->
-        <button id="theme-toggle" class="theme-toggle" aria-label="Toggle Dark Mode" title="Ganti Tema">
-            <!-- Ikon Bulan (Default / Light Mode) -->
-            <svg id="moon-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
-            </svg>
-            <!-- Ikon Matahari (Dark Mode) - Tersembunyi secara default -->
-            <svg id="sun-icon" style="display: none;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <circle cx="12" cy="12" r="5"></circle>
-                <line x1="12" y1="1" x2="12" y2="3"></line>
-                <line x1="12" y1="21" x2="12" y2="23"></line>
-                <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
-                <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
-                <line x1="1" y1="12" x2="3" y2="12"></line>
-                <line x1="21" y1="12" x2="23" y2="12"></line>
-                <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
-                <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
-            </svg>
-        </button>
+        <!-- Daftar Isi / Laci Menu -->
+        <div class="nav-menu" id="nav-menu">
+            <a href="#beranda" class="nav-link">Beranda</a>
+            <a href="#profil" class="nav-link">Keahlian</a>
+            <a href="#pengalaman" class="nav-link">Pengalaman</a>
+            <a href="#prestasi" class="nav-link">Prestasi</a>
+            
+            <!-- Tombol Toggle Dark Mode di Dalam Menu -->
+            <button id="theme-toggle" class="menu-action-btn" title="Ganti Tema">
+                <!-- Ikon Bulan -->
+                <svg id="moon-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                </svg>
+                <!-- Ikon Matahari (Tersembunyi Awalnya) -->
+                <svg id="sun-icon" style="display: none;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="5"></circle>
+                    <line x1="12" y1="1" x2="12" y2="3"></line>
+                    <line x1="12" y1="21" x2="12" y2="23"></line>
+                    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                    <line x1="1" y1="12" x2="3" y2="12"></line>
+                    <line x1="21" y1="12" x2="23" y2="12"></line>
+                    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                </svg>
+                <span id="theme-text">Mode Gelap</span>
+            </button>
+            
+            <!-- Tombol Kirim Email di Dalam Menu -->
+            <a href="mailto:mhdiqbal.125220102@student.itera.ac.id" class="menu-action-btn email-btn">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15a2.25 2.25 0 0 1-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75" />
+                </svg>
+                <span>Kirim Email</span>
+            </a>
+        </div>
     </nav>
 
     <!-- Hero Section -->
@@ -926,14 +977,6 @@
         </div>
     </section>
 
-    <!-- Tombol Mengambang (Floating Action Button) Email -->
-    <a href="mailto:mhdiqbal.125220102@student.itera.ac.id" class="floating-email" title="Kirim Email">
-        <!-- Ikon Surat (SVG) -->
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-          <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15a2.25 2.25 0 0 1-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75" />
-        </svg>
-    </a>
-
     <!-- Footer -->
     <footer>
         <p>&copy; 2026 <span>Mhd.Iqbal</span>. Dibuat dengan dedikasi.</p>
@@ -942,17 +985,42 @@
     <!-- SCIPTS UTAMA (JAVASCRIPT) -->
     <script>
         document.addEventListener("DOMContentLoaded", function() {
-            // 1. Logika Mode Gelap (Dark Mode) dengan Ikon SVG Baru
+            // 1. Logika Interaksi Sidebar Menu (Garis 3 / Hamburger)
+            const hamburger = document.getElementById('hamburger-menu');
+            const navMenu = document.getElementById('nav-menu');
+            const menuOverlay = document.getElementById('menu-overlay');
+            const navLinks = document.querySelectorAll('.nav-link');
+
+            function toggleMenu() {
+                hamburger.classList.toggle('active');
+                navMenu.classList.toggle('active');
+                menuOverlay.classList.toggle('active');
+            }
+
+            hamburger.addEventListener('click', toggleMenu);
+            menuOverlay.addEventListener('click', toggleMenu);
+
+            // Tutup laci otomatis saat salah satu menu diklik
+            navLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    if (navMenu.classList.contains('active')) {
+                        toggleMenu();
+                    }
+                });
+            });
+
+            // 2. Logika Mode Gelap (Dark Mode) di Sidebar
             const themeToggleBtn = document.getElementById('theme-toggle');
+            const themeText = document.getElementById('theme-text');
             const moonIcon = document.getElementById('moon-icon');
             const sunIcon = document.getElementById('sun-icon');
             const body = document.body;
 
-            // Cek memori dari kunjungan sebelumnya
             if (localStorage.getItem('theme') === 'dark') {
                 body.classList.add('dark-mode');
                 moonIcon.style.display = 'none';
                 sunIcon.style.display = 'block';
+                themeText.textContent = 'Mode Terang';
             }
 
             themeToggleBtn.addEventListener('click', () => {
@@ -962,14 +1030,19 @@
                     localStorage.setItem('theme', 'dark');
                     moonIcon.style.display = 'none';
                     sunIcon.style.display = 'block';
+                    themeText.textContent = 'Mode Terang';
                 } else {
                     localStorage.setItem('theme', 'light');
                     moonIcon.style.display = 'block';
                     sunIcon.style.display = 'none';
+                    themeText.textContent = 'Mode Gelap';
                 }
+                
+                // Opsional: Tutup menu laci setelah mengganti tema (hapus "//" di bawah jika ingin aktif)
+                // toggleMenu(); 
             });
 
-            // 2. Logika Efek Mengetik (Typing Effect)
+            // 3. Logika Efek Mengetik (Typing Effect)
             const textArray = [
                 "Mahasiswa Perencanaan Wilayah dan Kota ITERA",
                 "Event Management & Koordinator Lapangan",
@@ -1007,7 +1080,7 @@
             }
             typeEffect(); 
 
-            // 3. Logika Animasi Scroll
+            // 4. Logika Animasi Scroll
             const faders = document.querySelectorAll('.fade-in-scroll');
             const appearOptions = { threshold: 0.15, rootMargin: "0px 0px -50px 0px" };
             const appearOnScroll = new IntersectionObserver(function(entries, appearOnScroll) {
@@ -1020,11 +1093,11 @@
 
             faders.forEach(fader => { appearOnScroll.observe(fader); });
 
-            // 4. Mulai Slideshow saat web dimuat
+            // 5. Mulai Slideshow saat web dimuat
             initSlideshow();
         });
 
-        // 5. Logika Fungsi Slideshow
+        // 6. Logika Fungsi Slideshow
         let slideIndex = 1;
         let slideTimer;
 
