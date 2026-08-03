@@ -72,16 +72,14 @@
             --shadow-color: rgba(0,0,0,0.3);
         }
 
+        /* Transisi Global Super Smooth saat ganti mode gelap/terang */
+        .theme-transition, .theme-transition * {
+            transition: background-color 0.6s ease, color 0.6s ease, border-color 0.6s ease, box-shadow 0.6s ease !important;
+        }
+
         /* Pengaturan Dasar */
-        * {
-            margin: 0; padding: 0; box-sizing: border-box;
-            font-family: 'Inter', sans-serif; scroll-behavior: smooth;
-        }
-        body {
-            background-color: var(--bg-body); color: var(--text-main);
-            line-height: 1.6; overflow-x: hidden; width: 100%;
-            transition: background-color 0.3s ease, color 0.3s ease;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; scroll-behavior: smooth; }
+        body { background-color: var(--bg-body); color: var(--text-main); line-height: 1.6; overflow-x: hidden; width: 100%; transition: background-color 0.3s ease, color 0.3s ease; }
         a { text-decoration: none; color: inherit; }
 
         /* SISTEM HALAMAN VIRTUAL (TAB NAVIGATION) */
@@ -100,7 +98,6 @@
             box-shadow: 0 2px 4px var(--shadow-color); padding: 15px 5%;
             position: fixed; width: 100%; top: 4px; z-index: 1000;
             display: flex; justify-content: space-between; align-items: center;
-            transition: background-color 0.3s ease;
         }
         .logo { font-weight: 700; font-size: 1.5rem; color: var(--heading-color); letter-spacing: 1px; z-index: 1001; }
 
@@ -156,7 +153,6 @@
         .hero {
             position: relative; min-height: 100vh; background-color: var(--hero-bg);
             flex-direction: column; align-items: center; padding-bottom: 60px; width: 100%;
-            transition: background-color 0.3s ease;
         }
         .cover-banner {
             position: absolute; top: 0; left: 0; width: 100%; height: 40vh; min-height: 300px;
@@ -164,7 +160,7 @@
         }
         .cover-banner::after {
             content: ''; position: absolute; bottom: 0; left: 0; width: 100%; height: 150px;
-            background: linear-gradient(to bottom, transparent, var(--hero-bg)); transition: background 0.3s ease;
+            background: linear-gradient(to bottom, transparent, var(--hero-bg));
         }
 
         .hero-content {
@@ -173,29 +169,37 @@
             padding: 0 20px; width: 100%; max-width: 1200px;
         }
 
-        /* ==================================================
-           TATA LETAK BARU HEADER (FOTO + NAMA BERDAMPINGAN)
-           ================================================== */
+        /* TATA LETAK HEADER BARU: FOTO TERKUNCI & EFEK PUDAR */
         .hero-top-wrapper {
             display: flex; align-items: center; justify-content: center;
-            gap: 35px; margin-top: 20px; margin-bottom: 30px; width: 100%;
+            gap: 35px; margin-top: 20px; margin-bottom: 30px; width: 100%; max-width: 800px;
         }
         .profile-img-top {
             width: 170px; height: 190px; object-fit: cover; border-radius: 16px;
             box-shadow: 0 10px 25px var(--shadow-color); border: 5px solid var(--card-bg);
-            background-color: var(--card-bg); transition: border-color 0.3s ease, background-color 0.3s ease;
+            background-color: var(--card-bg); flex-shrink: 0;
         }
-        .hero-title-wrapper { text-align: left; }
-        .hero-title-wrapper h1 { font-size: 3.5rem; color: var(--heading-color); margin: 0 0 5px 0; font-weight: 700; }
+        .hero-title-wrapper { 
+            text-align: left; 
+            width: 450px; /* Ukuran ini dikunci agar foto tidak bergeser */
+            flex-shrink: 0;
+        }
+        .hero-title-wrapper h1 { font-size: 3.5rem; color: var(--heading-color); margin: 0 0 5px 0; font-weight: 700; line-height: 1.1;}
         .hero-title-wrapper h2 { font-size: 1.25rem; font-weight: 600; color: var(--primary-color); margin: 0; min-height: 30px; }
-        .cursor { display: inline-block; font-weight: bold; color: var(--primary-color); animation: blink 0.8s infinite; }
-        @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
+        
+        /* Animasi Pudar untuk Teks Keahlian */
+        #fade-text {
+            display: inline-block;
+            transition: opacity 0.5s ease-in-out;
+            opacity: 1;
+        }
+        .fade-out { opacity: 0 !important; }
         
         .contact-info {
             display: flex; flex-wrap: wrap; justify-content: center;
             background: var(--card-bg); padding: 10px 20px; border-radius: 50px;
             box-shadow: 0 4px 10px var(--shadow-color); margin-bottom: 30px;
-            width: 100%; max-width: 900px; transition: background-color 0.3s ease;
+            width: 100%; max-width: 900px;
         }
         .contact-item { display: flex; align-items: center; padding: 10px 20px; position: relative; font-size: 0.95rem; }
         .contact-item:not(:last-child)::after {
@@ -212,24 +216,25 @@
             line-height: 1.8; padding: 0 15px; width: 100%;
         }
 
-        /* Tombol Utama */
+        /* Tombol Utama (Warna Sama Semua) */
         .btn-container { display: flex; gap: 15px; flex-wrap: wrap; justify-content: center; width: 100%; margin-bottom: 40px; }
         .btn {
             background-color: var(--primary-color); color: white !important;
             padding: 12px 25px; border-radius: 8px; font-weight: 600;
             transition: all 0.3s ease; box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-            display: inline-flex; align-items: center; justify-content: center; gap: 8px; cursor: pointer;
+            display: inline-flex; align-items: center; justify-content: center; gap: 8px; cursor: pointer; border: none;
         }
-        .btn:hover { background-color: var(--primary-hover); transform: translateY(-2px); }
-        .btn-outline { background-color: transparent; color: var(--primary-color) !important; border: 2px solid var(--primary-color); }
-        .btn-outline:hover { background-color: var(--primary-color); color: white !important; }
+        .btn:hover { background-color: var(--primary-hover); transform: translateY(-2px); box-shadow: 0 6px 12px rgba(0,0,0,0.15);}
 
-        /* Pendidikan & Keahlian Box di Beranda */
-        .hero-skills-wrapper { width: 100%; max-width: 900px; text-align: left; }
+        /* Pendidikan & Keahlian Box di Beranda (Kembali Berdampingan/Grid 2) */
+        .grid-2 {
+            display: grid; grid-template-columns: 1fr 1fr; gap: 30px; 
+            max-width: 1100px; margin: 0 auto; width: 100%; text-align: left;
+        }
         .info-card {
             background: var(--card-bg); padding: 35px; border-radius: 16px; 
             box-shadow: 0 4px 15px var(--shadow-color); border: 1px solid var(--border-color); 
-            width: 100%; transition: background-color 0.3s ease, border-color 0.3s ease;
+            width: 100%;
         }
         .info-card h3 { color: var(--heading-color); margin-bottom: 25px; font-size: 1.35rem; font-weight: 700; border-bottom: 2px solid var(--date-bg); padding-bottom: 10px; }
         .education-list li { padding-left: 0 !important; margin-bottom: 20px; }
@@ -242,11 +247,9 @@
         .skill-list li { margin-bottom: 12px; padding-left: 25px; position: relative; font-size: 0.95rem; color: var(--text-main); }
         .skill-list li::before { content: '▹'; color: var(--primary-color); font-weight: bold; position: absolute; left: 0; font-size: 1.2rem; top: -2px; }
 
-        /* ==================================================
-           TOMBOL MENGAMBANG KEMBALI & BACK TO TOP
-           ================================================== */
+        /* TOMBOL MENGAMBANG KEMBALI & BACK TO TOP */
         .btn-floating-back {
-            position: fixed; bottom: 30px; left: 30px; z-index: 99; display: none; /* Disembunyikan di beranda */
+            position: fixed; bottom: 30px; left: 30px; z-index: 99; display: none; 
             background-color: var(--card-bg); color: var(--primary-color); border: 2px solid var(--primary-color);
             padding: 12px 20px; border-radius: 50px; font-weight: 600; font-size: 0.95rem;
             box-shadow: 0 4px 15px rgba(0,0,0,0.1); align-items: center; gap: 8px; cursor: pointer; transition: all 0.3s ease;
@@ -265,7 +268,7 @@
         #backToTopBtn svg { width: 24px; height: 24px; }
 
         /* Pengalaman & Prestasi Section */
-        #pengalaman, #prestasi { background-color: var(--bg-body); transition: background-color 0.3s ease; padding: 100px 5% 50px; }
+        #pengalaman, #prestasi { background-color: var(--bg-body); padding: 100px 5% 50px; }
         .section-title {
             text-align: left; font-size: 2.2rem; color: var(--heading-color); 
             margin-bottom: 10px; position: relative; font-weight: 700;
@@ -277,8 +280,8 @@
 
         .category-title {
             font-size: 1.5rem; color: var(--primary-color); text-align: left; 
-            margin: 50px 0 25px; border-bottom: 2px solid var(--date-bg); 
-            padding-bottom: 10px; font-weight: 700; max-width: 900px; margin-left: auto; margin-right: auto;
+            margin: 50px auto 25px; border-bottom: 2px solid var(--date-bg); 
+            padding-bottom: 10px; font-weight: 700; max-width: 900px; 
         }
 
         .timeline { max-width: 900px; margin: 0 auto; position: relative; width: 100%; }
@@ -287,14 +290,13 @@
             box-shadow: 0 4px 15px var(--shadow-color); margin-bottom: 25px;
             border-left: 5px solid var(--primary-color); border-right: 1px solid var(--border-color);
             border-top: 1px solid var(--border-color); border-bottom: 1px solid var(--border-color);
-            transition: transform 0.3s ease, border-color 0.3s ease, background-color 0.3s ease; width: 100%;
+            width: 100%; transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
         .timeline-item:hover {
             transform: translateX(5px) scale(1.01); border-left-color: var(--primary-hover);
             box-shadow: 0 8px 25px var(--shadow-color);
         }
         
-        /* Modifikasi Judul Acara (H3) & Posisi (H4) DIBALIK */
         .timeline-item h3 { color: var(--heading-color); font-size: 1.25rem; margin-bottom: 5px; }
         .timeline-item h3 a { color: inherit; text-decoration: none; cursor: pointer; transition: color 0.3s ease; }
         .timeline-item h3 a:hover { color: var(--primary-color); }
@@ -309,11 +311,11 @@
         .timeline-item ul li { margin-bottom: 8px; }
         .timeline-item p { color: var(--text-muted); font-size: 0.95rem; margin-bottom: 15px; line-height: 1.6; }
 
-        /* Slideshow Foto Volunteer Tanpa Panah */
+        /* Slideshow Foto Volunteer */
         .slideshow-container {
             max-width: 100%; position: relative; margin: 20px auto;
             border-radius: 12px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-            cursor: pointer; /* Memberitahu bahwa bisa diklik */
+            cursor: pointer;
         }
         .mySlides { display: none; }
         .mySlides img { width: 100%; height: 350px; object-fit: cover; border-radius: 12px; display: block; }
@@ -342,9 +344,7 @@
         .fade-in-scroll { opacity: 0; transform: translateY(40px); transition: opacity 0.8s ease-out, transform 0.8s ease-out; }
         .fade-in-scroll.is-visible { opacity: 1; transform: translateY(0); }
 
-        /* ==================================================
-           RESPONSIF HP (MOBILE VIEW) - SEMPURNA RATA KIRI KANAN
-           ================================================== */
+        /* Responsif HP */
         @media (max-width: 768px) {
             nav { padding: 15px 5%; }
             .cover-banner { height: 25vh; min-height: 220px; }
@@ -353,9 +353,9 @@
             /* Tata Letak Header HP */
             .hero-top-wrapper { flex-direction: column; gap: 15px; margin-top: 10px; margin-bottom: 20px; }
             .profile-img-top { width: 150px; height: 170px; }
-            .hero-title-wrapper { text-align: center; }
+            .hero-title-wrapper { text-align: center; width: 100%; }
             .hero-title-wrapper h1 { font-size: 2.2rem; }
-            .hero-title-wrapper h2 { font-size: 0.95rem; min-height: 50px; }
+            .hero-title-wrapper h2 { font-size: 1rem; min-height: 45px; }
             
             .contact-info { flex-direction: column; border-radius: 16px; padding: 10px 20px; gap: 0; width: 95%; }
             .contact-item { flex-direction: column; padding: 15px 0; text-align: center; }
@@ -367,6 +367,7 @@
             .btn-container { flex-direction: column; width: 100%; max-width: 250px; }
             .btn { text-align: center; width: 100%; justify-content: center; }
             
+            .grid-2 { grid-template-columns: 1fr; gap: 20px; }
             .info-card { padding: 25px 15px; }
             
             section { padding: 70px 15px 50px; }
@@ -376,7 +377,6 @@
             .timeline-item { padding: 20px 15px; }
             .mySlides img { height: 220px; }
             
-            /* Penyesuaian Tombol Mengambang di HP */
             .btn-floating-back { bottom: 20px; left: 15px; padding: 10px 15px; font-size: 0.85rem; }
             .btn-floating-back svg { width: 18px; height: 18px; }
             #backToTopBtn { bottom: 20px; right: 15px; padding: 10px; }
@@ -393,7 +393,7 @@
     <!-- Overlay Gelap -->
     <div class="menu-overlay" id="menu-overlay"></div>
 
-    <!-- Tombol Mengambang Kembali ke Beranda (Tampil saat bukan di beranda) -->
+    <!-- Tombol Mengambang Kembali ke Beranda -->
     <button id="floatingBackBtn" class="btn-floating-back" onclick="goToBeranda()">
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18" />
@@ -421,7 +421,7 @@
         <div class="nav-menu" id="nav-menu">
             <a href="#beranda" class="nav-link">Beranda</a>
             <a href="#pengalaman" class="nav-link">Pengalaman</a>
-            <a href="#prestasi" class="nav-link">Volunteer & Prestasi</a>
+            <a href="#prestasi" class="nav-link">Prestasi</a>
             
             <button id="theme-toggle" class="menu-action-btn" title="Ganti Tema">
                 <svg id="moon-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -455,12 +455,12 @@
         <div class="cover-banner"></div>
         <div class="hero-content">
             
-            <!-- TATA LETAK HEADER BARU: FOTO DI SAMPING NAMA -->
+            <!-- TATA LETAK HEADER BARU: FOTO TERKUNCI & EFEK PUDAR -->
             <div class="hero-top-wrapper animate-load delay-1">
                 <img src="Pas Foto.jpg" alt="Foto Profil Mhd.Iqbal" class="profile-img-top">
                 <div class="hero-title-wrapper">
                     <h1>Mhd.Iqbal</h1>
-                    <h2><span id="typed-text"></span><span class="cursor">|</span></h2>
+                    <h2><span id="fade-text">Mahasiswa Perencanaan Wilayah dan Kota ITERA</span></h2>
                 </div>
             </div>
             
@@ -487,18 +487,17 @@
                 Perkenalkan, saya Mhd.Iqbal, pemuda asal Padang Pariaman yang lahir pada 13 April 2007. Saat ini, saya tengah menempuh pendidikan sebagai mahasiswa program studi Perencanaan Wilayah dan Kota di Institut Teknologi Sumatera (ITERA). Di samping memfokuskan diri pada dunia akademik, analisis ruang, dan pemetaan wilayah, saya juga memiliki dedikasi tinggi dalam berorganisasi dan berkarya di bidang kreatif. Berbekal pengalaman memimpin divisi hingga menjadi koordinator operasional lapangan di berbagai kepanitiaan berskala institusi, saya terlatih untuk mengelola logistik, merancang strategi mobilisasi, dan memecahkan tantangan secara taktis. Saya merupakan individu yang adaptif, komunikatif, dan selalu mengutamakan kerja sama tim demi tercapainya target secara profesional.
             </p>
             
-            <!-- Tombol Pintasan -->
+            <!-- Tombol Pintasan (Warna Sama) -->
             <div class="btn-container animate-load delay-4">
-                <a href="#pengalaman" class="btn nav-link-btn">Lihat Pengalaman</a>
-                <a href="#prestasi" class="btn btn-outline nav-link-btn">Volunteer & Prestasi</a>
+                <a href="#pengalaman" class="btn nav-link-btn">Pengalaman</a>
+                <a href="#prestasi" class="btn nav-link-btn">Prestasi</a>
             </div>
 
-            <!-- KOTAK KEAHLIAN TEPAT DI BERANDA -->
-            <div class="hero-skills-wrapper animate-load delay-4">
+            <!-- PENDIDIKAN & KEAHLIAN BERDAMPINGAN KIRI KANAN -->
+            <div class="grid-2 animate-load delay-4" style="margin-top: 20px;">
+                <!-- Kolom Kiri: Pendidikan -->
                 <div class="info-card">
-                    <h3>Pendidikan & Keahlian</h3>
-                    
-                    <!-- Pendidikan -->
+                    <h3>Riwayat Pendidikan</h3>
                     <ul class="skill-list education-list">
                         <li>
                             <a href="https://www.itera.ac.id/" target="_blank" class="hidden-link">
@@ -521,11 +520,12 @@
                             </a>
                         </li>
                     </ul>
-
-                    <hr style="border: 0; border-top: 1px solid var(--border-color); margin: 20px 0;">
-
-                    <!-- Keahlian -->
-                    <ul class="skill-list" style="margin-top: 20px;">
+                </div>
+                
+                <!-- Kolom Kanan: Keahlian -->
+                <div class="info-card">
+                    <h3>Keahlian (Skills)</h3>
+                    <ul class="skill-list">
                         <li><strong>Software & Alat Pemetaan:</strong> ArcMap (GIS)</li>
                         <li><strong>Desain & Media Kreatif:</strong> Canva, Videografi</li>
                         <li><strong>Aplikasi Perkantoran:</strong> Microsoft Word, PowerPoint</li>
@@ -541,7 +541,6 @@
 
     <!-- HALAMAN PENGALAMAN -->
     <section id="pengalaman" class="page-section">
-        
         <h2 class="section-title fade-in-scroll">Pengalaman</h2>
         <div class="timeline">
             
@@ -649,7 +648,7 @@
                 <h4>Volunteer (Aksi Lingkungan)</h4>
                 <span class="date">November 2025</span>
                 
-                <!-- Kotak Slideshow PINTAR (Diklik gambar untuk ganti, tanpa panah) -->
+                <!-- Kotak Slideshow PINTAR (Diklik gambar untuk ganti) -->
                 <div class="slideshow-container" onclick="plusSlides(1)" title="Klik gambar untuk slide berikutnya">
                     <div class="mySlides fade-slide-anim">
                         <img src="dokum(1).jpeg" alt="Dokumentasi Volunteer 1" loading="lazy">
@@ -707,7 +706,7 @@
             document.querySelectorAll('.page-section').forEach(sec => sec.classList.remove('active-section'));
             document.getElementById('beranda').classList.add('active-section');
             window.scrollTo({ top: 0, behavior: 'smooth' });
-            toggleBackBtn(); // Cek tombol floating
+            toggleBackBtn(); 
         }
 
         // FUNGSI CEK TOMBOL BACK FLOATING
@@ -753,7 +752,7 @@
                         }
                         
                         window.scrollTo({ top: 0, behavior: 'smooth' });
-                        toggleBackBtn(); // Cek perlukah tombol back muncul
+                        toggleBackBtn(); 
 
                         if (navMenu.classList.contains('active')) {
                             toggleMenu();
@@ -762,10 +761,9 @@
                 });
             });
 
-            // Pastikan tombol back diatur di awal
             toggleBackBtn();
 
-            // 2. Logika Mode Gelap (Dark Mode)
+            // 2. Logika Mode Gelap (Dark Mode) DENGAN ANIMASI TRANSISI
             const themeToggleBtn = document.getElementById('theme-toggle');
             const themeText = document.getElementById('theme-text');
             const moonIcon = document.getElementById('moon-icon');
@@ -780,6 +778,9 @@
             }
 
             themeToggleBtn.addEventListener('click', () => {
+                // Tambahkan kelas transisi sementara ke seluruh HTML
+                document.documentElement.classList.add('theme-transition');
+                
                 body.classList.toggle('dark-mode');
                 if (body.classList.contains('dark-mode')) {
                     localStorage.setItem('theme', 'dark');
@@ -792,9 +793,14 @@
                     sunIcon.style.display = 'none';
                     themeText.textContent = 'Mode Gelap';
                 }
+
+                // Hapus kelas transisi setelah animasi selesai (600ms)
+                setTimeout(() => {
+                    document.documentElement.classList.remove('theme-transition');
+                }, 600);
             });
 
-            // 3. Logika Efek Mengetik (Typing Effect)
+            // 3. Logika Efek Teks Pudar (Fade In/Out Animasi)
             const textArray = [
                 "Mahasiswa Perencanaan Wilayah dan Kota ITERA",
                 "Event Management & Koordinator Lapangan",
@@ -802,36 +808,22 @@
                 "Graphic Designer & Videographer"
             ];
             let textIndex = 0;
-            let charIndex = 0;
-            let isDeleting = false;
+            const fadeTextElement = document.getElementById("fade-text");
 
-            function typeEffect() {
-                const currentText = textArray[textIndex];
-                const typedTextElement = document.getElementById("typed-text");
-                
-                if(!typedTextElement) return;
-
-                if (isDeleting) {
-                    typedTextElement.textContent = currentText.substring(0, charIndex - 1);
-                    charIndex--;
-                } else {
-                    typedTextElement.textContent = currentText.substring(0, charIndex + 1);
-                    charIndex++;
-                }
-
-                let typeSpeed = isDeleting ? 40 : 80;
-
-                if (!isDeleting && charIndex === currentText.length) {
-                    typeSpeed = 2500; 
-                    isDeleting = true;
-                } else if (isDeleting && charIndex === 0) {
-                    isDeleting = false;
-                    textIndex = (textIndex + 1) % textArray.length;
-                    typeSpeed = 500; 
-                }
-                setTimeout(typeEffect, typeSpeed);
+            if (fadeTextElement) {
+                fadeTextElement.textContent = textArray[textIndex];
+                setInterval(() => {
+                    // Pudar (Fade out)
+                    fadeTextElement.classList.add('fade-out');
+                    
+                    // Tunggu setengah detik lalu ganti teks dan munculkan (Fade in)
+                    setTimeout(() => {
+                        textIndex = (textIndex + 1) % textArray.length;
+                        fadeTextElement.textContent = textArray[textIndex];
+                        fadeTextElement.classList.remove('fade-out');
+                    }, 500);
+                }, 3000); // Ganti tiap 3 detik
             }
-            typeEffect(); 
 
             // 4. Logika Animasi Scroll Muncul (Fade In)
             const faders = document.querySelectorAll('.fade-in-scroll');
@@ -840,7 +832,6 @@
                 entries.forEach(entry => {
                     if (!entry.isIntersecting) return;
                     entry.target.classList.add('is-visible');
-                    // Stop mengawasi jika sudah muncul
                     appearOnScroll.unobserve(entry.target);
                 });
             }, appearOptions);
@@ -875,7 +866,7 @@
         let slideIndex = 1;
         let slideTimer;
 
-        // Fungsi Global untuk Slideshow (diakses dari HTML onClick)
+        // Fungsi Global untuk Slideshow
         window.initSlideshow = function() {
             showSlides(slideIndex);
             slideTimer = setInterval(function(){ plusSlides(1) }, 3000);
