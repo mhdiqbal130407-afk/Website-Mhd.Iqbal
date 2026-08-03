@@ -5,20 +5,33 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
+    <!-- Pengaturan SEO Lanjutan & Open Graph -->
     <title>Portofolio - Mhd.Iqbal | Mahasiswa PWK ITERA</title>
-    <meta name="description" content="Website portofolio resmi Mhd.Iqbal, Mahasiswa Perencanaan Wilayah dan Kota di Institut Teknologi Sumatera (ITERA). Berisi profil, riwayat pendidikan, keahlian, pengalaman organisasi, dan prestasi.">
-    <meta name="keywords" content="Mhd.Iqbal, Muhamad Iqbal, Portofolio, Perencanaan Wilayah dan Kota, PWK ITERA, Mahasiswa ITERA, Padang Pariaman, Juara FLS2N">
+    <meta name="description" content="Website portofolio resmi Mhd.Iqbal, Mahasiswa Perencanaan Wilayah dan Kota di Institut Teknologi Sumatera (ITERA). Berpengalaman dalam pemetaan spasial, operasional lapangan, dan desain kreatif.">
+    <meta name="keywords" content="Mhd.Iqbal, Muhamad Iqbal, Portofolio, Perencanaan Wilayah dan Kota, PWK ITERA, Mahasiswa ITERA, Padang Pariaman, Juara FLS2N, GIS">
     <meta name="author" content="Mhd.Iqbal">
     
+    <meta property="og:title" content="Portofolio - Mhd.Iqbal | PWK ITERA">
+    <meta property="og:description" content="Mahasiswa Perencanaan Wilayah dan Kota ITERA. Berpengalaman dalam pemetaan, desain, dan manajemen kegiatan lapangan. Lihat selengkapnya!">
+    <meta property="og:image" content="https://mhdiqbal130407-afk.github.io/Website-Mhd.Iqbal/Pas Foto.jpg">
+    <meta property="og:url" content="https://mhdiqbal130407-afk.github.io/Website-Mhd.Iqbal/">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Portofolio Mhd.Iqbal">
+    
+    <!-- Ikon/Logo Website (Favicon) -->
     <link rel="icon" type="image/jpeg" href="logo.jpg">
 
-    <meta property="og:site_name" content="Portofolio Mhd.Iqbal">
     <script type="application/ld+json">
     {
       "@context" : "https://schema.org",
-      "@type" : "WebSite",
-      "name" : "Portofolio Mhd.Iqbal",
-      "url" : "https://mhdiqbal130407-afk.github.io/Website-Mhd.Iqbal/"
+      "@type" : "Person",
+      "name" : "Mhd.Iqbal",
+      "url" : "https://mhdiqbal130407-afk.github.io/Website-Mhd.Iqbal/",
+      "jobTitle": "Mahasiswa Perencanaan Wilayah dan Kota",
+      "worksFor": {
+        "@type": "Organization",
+        "name": "Institut Teknologi Sumatera"
+      }
     }
     </script>
 
@@ -80,6 +93,44 @@
             color: inherit;
         }
 
+        /* ==================================================
+           SISTEM HALAMAN VIRTUAL (TAB NAVIGATION)
+           ================================================== */
+        .page-section {
+            display: none; /* Sembunyikan semua halaman secara default */
+            animation: fadeInPage 0.6s ease-out forwards;
+        }
+        /* Tampilkan halaman hanya jika memiliki class active-section */
+        #beranda.active-section {
+            display: flex; /* Karena beranda butuh flexbox */
+        }
+        #profil.active-section, 
+        #pengalaman.active-section, 
+        #prestasi.active-section {
+            display: block; /* Halaman lainnya butuh block biasa */
+        }
+
+        @keyframes fadeInPage {
+            from { opacity: 0; transform: translateY(15px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* SCROLL PROGRESS BAR */
+        .progress-container {
+            width: 100%;
+            height: 4px;
+            background: transparent;
+            position: fixed;
+            top: 0;
+            z-index: 1002;
+        }
+        .progress-bar {
+            height: 4px;
+            background: var(--primary-color);
+            width: 0%;
+            transition: width 0.1s ease;
+        }
+
         /* Navigasi Header Super Clean */
         nav {
             background-color: var(--nav-bg);
@@ -88,7 +139,7 @@
             padding: 15px 5%;
             position: fixed;
             width: 100%;
-            top: 0;
+            top: 4px; /* Diberi jarak agar progress bar terlihat */
             z-index: 1000;
             display: flex;
             justify-content: space-between;
@@ -120,16 +171,9 @@
             border-radius: 3px;
             transition: all 0.3s ease;
         }
-        /* Animasi Hamburger Menjadi X */
-        .hamburger.active span:nth-child(1) {
-            transform: translateY(9px) rotate(45deg);
-        }
-        .hamburger.active span:nth-child(2) {
-            opacity: 0;
-        }
-        .hamburger.active span:nth-child(3) {
-            transform: translateY(-9px) rotate(-45deg);
-        }
+        .hamburger.active span:nth-child(1) { transform: translateY(9px) rotate(45deg); }
+        .hamburger.active span:nth-child(2) { opacity: 0; }
+        .hamburger.active span:nth-child(3) { transform: translateY(-9px) rotate(-45deg); }
 
         /* Laci Menu (Sidebar Sliding) */
         .nav-menu {
@@ -148,11 +192,8 @@
             z-index: 999; 
             overflow-y: auto;
         }
-        .nav-menu.active {
-            right: 0;
-        }
+        .nav-menu.active { right: 0; }
         
-        /* Desain Isi Menu Laci */
         .nav-link {
             font-size: 1.15rem;
             font-weight: 600;
@@ -161,12 +202,11 @@
             border-bottom: 1px solid var(--border-color);
             transition: color 0.3s, padding-left 0.3s;
         }
-        .nav-link:hover {
+        .nav-link:hover, .nav-link.active-menu {
             color: var(--primary-color);
             padding-left: 10px;
         }
         
-        /* Tombol Aksi di Menu (Mode Gelap & Email) */
         .menu-action-btn {
             display: flex;
             align-items: center;
@@ -187,10 +227,8 @@
             color: var(--primary-color);
             padding-left: 10px;
         }
-        .menu-action-btn svg {
-            width: 22px;
-            height: 22px;
-        }
+        .menu-action-btn svg { width: 22px; height: 22px; }
+        
         .menu-action-btn.email-btn {
             color: white;
             background-color: var(--primary-color);
@@ -207,7 +245,6 @@
             padding-left: 20px; 
         }
 
-        /* Overlay Gelap saat menu terbuka */
         .menu-overlay {
             position: fixed;
             top: 0;
@@ -220,17 +257,13 @@
             visibility: hidden;
             transition: opacity 0.3s ease;
         }
-        .menu-overlay.active {
-            opacity: 1;
-            visibility: visible;
-        }
+        .menu-overlay.active { opacity: 1; visibility: visible; }
 
         /* Hero Section */
         .hero {
             position: relative;
             min-height: 100vh;
             background-color: var(--hero-bg);
-            display: flex;
             flex-direction: column;
             align-items: center;
             padding-bottom: 60px;
@@ -290,7 +323,6 @@
             font-weight: 700;
         }
         
-        /* Efek Ketik (Typing Effect) */
         .hero h2 {
             font-size: 1.25rem;
             font-weight: 600;
@@ -309,9 +341,6 @@
             50% { opacity: 0; }
         }
         
-        /* ==================================================
-           PERBAIKAN PENGATURAN KONTAK (DESKTOP & HP RAPI)
-           ================================================== */
         .contact-info {
             display: flex;
             flex-wrap: wrap;
@@ -332,7 +361,6 @@
             position: relative;
             font-size: 0.95rem;
         }
-        /* Garis Vertikal Pemisah untuk Laptop */
         .contact-item:not(:last-child)::after {
             content: '';
             position: absolute;
@@ -370,10 +398,12 @@
             width: 100%;
         }
 
-        /* Tombol */
+        /* Tombol Utama */
         .btn-container {
             display: flex;
             gap: 15px;
+            flex-wrap: wrap;
+            justify-content: center;
         }
         .btn {
             background-color: var(--primary-color);
@@ -383,7 +413,10 @@
             font-weight: 600;
             transition: all 0.3s ease;
             box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-            display: inline-block;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
         }
         .btn:hover {
             background-color: var(--primary-hover);
@@ -399,123 +432,100 @@
             color: white !important;
         }
 
-        /* Bagian Konten Global */
-        section {
-            padding: 90px 5%;
-            width: 100%;
+        /* ==================================================
+           BACK TO TOP BUTTON
+           ================================================== */
+        #backToTopBtn {
+            display: none; 
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 99;
+            font-size: 18px;
+            border: none;
+            outline: none;
+            background-color: var(--primary-color);
+            color: white;
+            cursor: pointer;
+            padding: 14px;
+            border-radius: 50%;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+            transition: background-color 0.3s, transform 0.3s;
         }
+        #backToTopBtn:hover {
+            background-color: var(--primary-hover);
+            transform: translateY(-5px);
+        }
+        #backToTopBtn svg { width: 24px; height: 24px; }
+
+        /* Bagian Konten Global */
+        section { padding: 90px 5%; width: 100%; }
         .section-title {
-            text-align: center;
-            font-size: 2.2rem;
-            color: var(--heading-color);
-            margin-bottom: 60px;
-            position: relative;
-            font-weight: 700;
+            text-align: center; font-size: 2.2rem;
+            color: var(--heading-color); margin-bottom: 60px;
+            position: relative; font-weight: 700;
+            padding-top: 20px; /* Jarak agar tidak tertutup header */
         }
         .section-title::after {
-            content: '';
-            display: block;
-            width: 70px;
-            height: 4px;
+            content: ''; display: block;
+            width: 70px; height: 4px;
             background-color: var(--primary-color);
-            margin: 15px auto 0;
-            border-radius: 2px;
+            margin: 15px auto 0; border-radius: 2px;
         }
 
         /* Profil & Keahlian */
         .grid-2 {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 40px;
-            max-width: 1100px;
-            margin: 0 auto;
-            width: 100%;
+            display: grid; grid-template-columns: 1fr 1fr;
+            gap: 40px; max-width: 1100px;
+            margin: 0 auto; width: 100%;
         }
         .info-card {
-            background: var(--card-bg);
-            padding: 35px;
-            border-radius: 16px;
-            box-shadow: 0 4px 15px var(--shadow-color);
-            border: 1px solid var(--border-color);
-            width: 100%;
+            background: var(--card-bg); padding: 35px;
+            border-radius: 16px; box-shadow: 0 4px 15px var(--shadow-color);
+            border: 1px solid var(--border-color); width: 100%;
             transition: background-color 0.3s ease, border-color 0.3s ease;
         }
         .info-card h3 {
-            color: var(--heading-color);
-            margin-bottom: 20px;
+            color: var(--heading-color); margin-bottom: 20px;
             border-bottom: 2px solid var(--date-bg);
-            padding-bottom: 12px;
-            font-size: 1.3rem;
+            padding-bottom: 12px; font-size: 1.3rem;
         }
         
-        .education-list li {
-            padding-left: 0 !important;
-            margin-bottom: 20px;
-        }
+        .education-list li { padding-left: 0 !important; margin-bottom: 20px; }
         .education-list li::before { display: none !important; }
         .hidden-link {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            color: inherit;
-            text-decoration: none;
-            transition: transform 0.2s ease;
+            display: flex; align-items: center; gap: 15px;
+            color: inherit; text-decoration: none; transition: transform 0.2s ease;
         }
-        .hidden-link:hover {
-            color: inherit;
-            text-decoration: none;
-            transform: translateX(5px);
-        }
+        .hidden-link:hover { text-decoration: none; transform: translateX(5px); }
         .edu-logo {
-            width: 60px;
-            height: 60px;
-            object-fit: contain;
-            flex-shrink: 0;
-            background: white; 
-            border-radius: 8px;
-            padding: 2px;
+            width: 60px; height: 60px; object-fit: contain; flex-shrink: 0;
+            background: white; border-radius: 8px; padding: 2px;
         }
-        .edu-date {
-            color: var(--text-muted);
-            font-size: 0.85rem;
-            font-weight: 600;
-        }
+        .edu-date { color: var(--text-muted); font-size: 0.85rem; font-weight: 600; }
 
         .skill-list { list-style: none; }
         .skill-list li {
-            margin-bottom: 12px;
-            padding-left: 25px;
-            position: relative;
-            font-size: 0.95rem;
-            color: var(--text-main);
+            margin-bottom: 12px; padding-left: 25px;
+            position: relative; font-size: 0.95rem; color: var(--text-main);
         }
         .skill-list li::before {
-            content: '▹';
-            color: var(--primary-color);
-            font-weight: bold;
-            position: absolute;
-            left: 0;
-            font-size: 1.2rem;
-            top: -2px;
+            content: '▹'; color: var(--primary-color); font-weight: bold;
+            position: absolute; left: 0; font-size: 1.2rem; top: -2px;
         }
 
-        /* Pengalaman & Prestasi Section (Timeline) */
+        /* Pengalaman & Prestasi Section */
         #pengalaman {
             background-color: var(--section-alt-bg);
             transition: background-color 0.3s ease;
         }
         .timeline {
-            max-width: 900px;
-            margin: 0 auto;
-            position: relative;
-            width: 100%;
+            max-width: 900px; margin: 0 auto;
+            position: relative; width: 100%;
         }
         .timeline-item {
-            background: var(--card-bg);
-            padding: 30px;
-            border-radius: 16px;
-            box-shadow: 0 4px 15px var(--shadow-color);
-            margin-bottom: 25px;
+            background: var(--card-bg); padding: 30px; border-radius: 16px;
+            box-shadow: 0 4px 15px var(--shadow-color); margin-bottom: 25px;
             border-left: 5px solid var(--primary-color);
             border-right: 1px solid var(--border-color);
             border-top: 1px solid var(--border-color);
@@ -528,135 +538,55 @@
             border-left-color: var(--primary-hover);
             box-shadow: 0 8px 25px var(--shadow-color);
         }
-        .timeline-item h3 {
-            color: var(--heading-color);
-            font-size: 1.25rem;
-            margin-bottom: 5px;
-        }
-        .timeline-item h4 {
-            color: var(--primary-color);
-            font-size: 1rem;
-            font-weight: 600;
-            margin-bottom: 12px;
-        }
-        
-        .timeline-item h4 a {
-            color: inherit;
-            text-decoration: none;
-            cursor: pointer;
-        }
-        .timeline-item h4 a:hover {
-            color: inherit;
-            text-decoration: none;
-        }
-
+        .timeline-item h3 { color: var(--heading-color); font-size: 1.25rem; margin-bottom: 5px; }
+        .timeline-item h4 { color: var(--primary-color); font-size: 1rem; font-weight: 600; margin-bottom: 12px; }
+        .timeline-item h4 a { color: inherit; text-decoration: none; cursor: pointer; }
+        .timeline-item h4 a:hover { text-decoration: none; }
         .timeline-item .date {
-            font-size: 0.85rem;
-            color: var(--text-muted);
-            margin-bottom: 15px;
-            display: inline-block;
-            background: var(--date-bg);
-            padding: 5px 12px;
-            border-radius: 20px;
-            font-weight: 600;
+            font-size: 0.85rem; color: var(--text-muted); margin-bottom: 15px;
+            display: inline-block; background: var(--date-bg); padding: 5px 12px;
+            border-radius: 20px; font-weight: 600;
         }
-        .timeline-item ul {
-            padding-left: 20px;
-            font-size: 0.95rem;
-            color: var(--text-muted);
-        }
+        .timeline-item ul { padding-left: 20px; font-size: 0.95rem; color: var(--text-muted); }
         .timeline-item ul li { margin-bottom: 8px; }
-        .timeline-item p {
-            color: var(--text-muted);
-            font-size: 0.95rem;
-            margin-bottom: 15px;
-            line-height: 1.6;
-        }
+        .timeline-item p { color: var(--text-muted); font-size: 0.95rem; margin-bottom: 15px; line-height: 1.6; }
 
         /* Slideshow Foto */
         .slideshow-container {
-            max-width: 100%;
-            position: relative;
-            margin: 20px auto;
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            max-width: 100%; position: relative; margin: 20px auto;
+            border-radius: 12px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.1);
         }
         .mySlides { display: none; }
         .mySlides img {
-            width: 100%;
-            height: 300px;
-            object-fit: cover;
-            border-radius: 12px;
-            display: block;
+            width: 100%; height: 300px; object-fit: cover;
+            border-radius: 12px; display: block;
         }
         .prev, .next {
-            cursor: pointer;
-            position: absolute;
-            top: 50%;
-            width: auto;
-            margin-top: -22px;
-            padding: 12px 16px;
-            color: white;
-            font-weight: bold;
-            font-size: 18px;
-            transition: 0.3s ease;
-            border-radius: 0 4px 4px 0;
-            background-color: rgba(0,0,0,0.4);
-            user-select: none;
+            cursor: pointer; position: absolute; top: 50%;
+            width: auto; margin-top: -22px; padding: 12px 16px;
+            color: white; font-weight: bold; font-size: 18px;
+            transition: 0.3s ease; border-radius: 0 4px 4px 0;
+            background-color: rgba(0,0,0,0.4); user-select: none;
         }
-        .next {
-            right: 0;
-            border-radius: 4px 0 0 4px;
-        }
-        .prev:hover, .next:hover {
-            background-color: rgba(0,0,0,0.8);
-        }
-        .dot-container {
-            text-align: center;
-            margin-top: 10px;
-            margin-bottom: 20px;
-        }
+        .next { right: 0; border-radius: 4px 0 0 4px; }
+        .prev:hover, .next:hover { background-color: rgba(0,0,0,0.8); }
+        .dot-container { text-align: center; margin-top: 10px; margin-bottom: 20px; }
         .dot {
-            cursor: pointer;
-            height: 10px;
-            width: 10px;
-            margin: 0 3px;
-            background-color: var(--border-color);
-            border-radius: 50%;
-            display: inline-block;
-            transition: background-color 0.3s ease;
+            cursor: pointer; height: 10px; width: 10px; margin: 0 3px;
+            background-color: var(--border-color); border-radius: 50%;
+            display: inline-block; transition: background-color 0.3s ease;
         }
         .active-dot, .dot:hover { background-color: var(--primary-color); }
-        .fade-slide-anim {
-            animation-name: fadeAnimation;
-            animation-duration: 1.5s;
-        }
-        @keyframes fadeAnimation {
-            from {opacity: .4}
-            to {opacity: 1}
-        }
+        .fade-slide-anim { animation-name: fadeAnimation; animation-duration: 1.5s; }
+        @keyframes fadeAnimation { from {opacity: .4} to {opacity: 1} }
 
-        /* Footer */
         footer {
-            background-color: #0b1120;
-            color: #94a3b8;
-            text-align: center;
-            padding: 30px 20px;
-            margin-top: 50px;
-            font-size: 0.9rem;
-            width: 100%;
+            background-color: #0b1120; color: #94a3b8; text-align: center;
+            padding: 30px 20px; margin-top: auto; font-size: 0.9rem; width: 100%;
         }
-        footer span {
-            color: white;
-            font-weight: 600;
-        }
+        footer span { color: white; font-weight: 600; }
 
-        /* Animasi CSS (Scroll) */
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(30px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
         .animate-load { opacity: 0; animation: fadeInUp 0.8s ease-out forwards; }
         .delay-1 { animation-delay: 0.2s; }
         .delay-2 { animation-delay: 0.4s; }
@@ -664,84 +594,51 @@
         .delay-4 { animation-delay: 0.8s; }
 
         .fade-in-scroll {
-            opacity: 0;
-            transform: translateY(40px);
+            opacity: 0; transform: translateY(40px);
             transition: opacity 0.8s ease-out, transform 0.8s ease-out;
         }
-        .fade-in-scroll.is-visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
+        .fade-in-scroll.is-visible { opacity: 1; transform: translateY(0); }
 
-        /* ==================================================
-           RESPONSIF UNTUK HP (MOBILE VIEW)
-           ================================================== */
+        /* Responsif HP */
         @media (max-width: 768px) {
             nav { padding: 15px 5%; }
             .cover-banner { height: 25vh; min-height: 220px; }
             .hero-content { margin-top: calc(25vh - 75px); padding: 0 15px; }
             .profile-img { width: 150px; height: 180px; border-width: 4px; margin-bottom: 15px; }
             .hero h1 { font-size: 2rem; }
-            .hero h2 { 
-                font-size: 0.95rem; 
-                padding: 0 10px; 
-                min-height: 50px; 
-            }
+            .hero h2 { font-size: 0.95rem; padding: 0 10px; min-height: 50px; }
             
-            /* PENGATURAN KONTAK HP YANG SANGAT RAPI */
-            .contact-info {
-                flex-direction: column;
-                border-radius: 16px; 
-                padding: 10px 20px; 
-                gap: 0;
-                width: 95%;
-            }
-            .contact-item {
-                flex-direction: column;
-                padding: 15px 0;
-                text-align: center;
-            }
-            /* Ubah garis vertikal jadi horizontal di HP */
-            .contact-item:not(:last-child)::after {
-                width: 100%;
-                height: 1px;
-                top: auto;
-                bottom: 0;
-                right: auto;
-                transform: none;
-                background-color: var(--border-color);
-            }
-            .contact-label {
-                margin-right: 0;
-                margin-bottom: 5px;
-                font-size: 0.85rem;
-            }
-            .contact-value a { 
-                word-wrap: break-word; 
-                word-break: break-all; 
-            }
+            .contact-info { flex-direction: column; border-radius: 16px; padding: 10px 20px; gap: 0; width: 95%; }
+            .contact-item { flex-direction: column; padding: 15px 0; text-align: center; }
+            .contact-item:not(:last-child)::after { width: 100%; height: 1px; top: auto; bottom: 0; right: auto; transform: none; }
+            .contact-label { margin-right: 0; margin-bottom: 5px; font-size: 0.85rem; }
+            .contact-value a { word-wrap: break-word; word-break: break-all; }
 
-            .bio-text { 
-                font-size: 0.95rem; 
-                text-align: justify; 
-                text-align-last: center; 
-                padding: 0 15px; 
-            }
+            .bio-text { font-size: 0.95rem; text-align: justify; text-align-last: center; padding: 0 15px; }
             .btn-container { flex-direction: column; width: 100%; max-width: 250px; }
-            .btn { text-align: center; width: 100%; }
+            .btn { text-align: center; width: 100%; justify-content: center; }
             section { padding: 50px 15px; }
             .section-title { font-size: 1.8rem; margin-bottom: 35px; }
             .grid-2 { grid-template-columns: 1fr; gap: 20px; }
             .info-card { padding: 25px 15px; }
             .timeline-item { padding: 20px 15px; }
             .mySlides img { height: 200px; }
+            
+            #backToTopBtn { bottom: 20px; right: 20px; padding: 10px; }
         }
     </style>
 </head>
 <body>
 
+    <!-- Scroll Progress Bar -->
+    <div class="progress-container">
+        <div class="progress-bar" id="myBar"></div>
+    </div>
+
+    <!-- Overlay Gelap -->
     <div class="menu-overlay" id="menu-overlay"></div>
 
+    <!-- Navigasi -->
     <nav>
         <div class="logo">MHD.IQBAL</div>
         
@@ -784,7 +681,8 @@
         </div>
     </nav>
 
-    <section id="beranda" class="hero">
+    <!-- CLASS active-section MENANDAKAN HALAMAN YANG SEDANG DIBUKA -->
+    <section id="beranda" class="hero page-section active-section">
         <div class="cover-banner"></div>
         <div class="hero-content">
             <img src="Pas Foto.jpg" alt="Foto Profil Mhd.Iqbal" class="profile-img animate-load">
@@ -816,13 +714,19 @@
             </p>
             
             <div class="btn-container animate-load delay-4">
-                <a href="#pengalaman" class="btn">Lihat Pengalaman</a>
-                <a href="#prestasi" class="btn btn-outline">Lihat Prestasi</a>
+                <a href="CV_Mhd_Iqbal.pdf" download class="btn" title="Unduh File PDF Resume/CV">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" style="width: 20px; height: 20px;">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3" />
+                    </svg>
+                    Unduh CV
+                </a>
+                <a href="#pengalaman" class="btn btn-outline nav-link-btn">Lihat Pengalaman</a>
             </div>
         </div>
     </section>
 
-    <section id="profil">
+    <!-- SECTION PROFIL (SEKARANG JADI HALAMAN VIRTUAL TERPISAH) -->
+    <section id="profil" class="page-section">
         <h2 class="section-title fade-in-scroll">Pendidikan & Keahlian</h2>
         <div class="grid-2">
             
@@ -831,7 +735,7 @@
                 <ul class="skill-list education-list">
                     <li>
                         <a href="https://www.itera.ac.id/" target="_blank" class="hidden-link">
-                            <img src="Logo ITERA.png" alt="Logo ITERA" class="edu-logo">
+                            <img src="Logo ITERA.png" alt="Logo ITERA" class="edu-logo" loading="lazy">
                             <div>
                                 <strong style="font-size: 1.05rem;">Institut Teknologi Sumatera (ITERA)</strong><br>
                                 Program Studi Perencanaan Wilayah dan Kota<br>
@@ -841,7 +745,7 @@
                     </li>
                     <li>
                         <a href="https://www.instagram.com/sman1.enamlingkung" target="_blank" class="hidden-link">
-                            <img src="Logo Smanel.png" alt="Logo SMANEL" class="edu-logo">
+                            <img src="Logo Smanel.png" alt="Logo SMANEL" class="edu-logo" loading="lazy">
                             <div>
                                 <strong style="font-size: 1.05rem;">SMAN 1 Enam Lingkung, Sumatera Barat</strong><br>
                                 Jurusan MIPA<br>
@@ -866,7 +770,8 @@
         </div>
     </section>
 
-    <section id="pengalaman">
+    <!-- SECTION PENGALAMAN (SEKARANG JADI HALAMAN VIRTUAL TERPISAH) -->
+    <section id="pengalaman" class="page-section">
         <h2 class="section-title fade-in-scroll">Pengalaman Organisasi & Kepanitiaan</h2>
         <div class="timeline">
             
@@ -963,7 +868,8 @@
         </div>
     </section>
 
-    <section id="prestasi">
+    <!-- SECTION PRESTASI (SEKARANG JADI HALAMAN VIRTUAL TERPISAH) -->
+    <section id="prestasi" class="page-section">
         <h2 class="section-title fade-in-scroll">Prestasi & Penghargaan</h2>
         <div class="timeline">
             
@@ -984,16 +890,16 @@
                 
                 <div class="slideshow-container">
                     <div class="mySlides fade-slide-anim">
-                        <img src="dokum(1).jpeg" alt="Dokumentasi Volunteer 1">
+                        <img src="dokum(1).jpeg" alt="Dokumentasi Volunteer 1" loading="lazy">
                     </div>
                     <div class="mySlides fade-slide-anim">
-                        <img src="dokum(2).jpeg" alt="Dokumentasi Volunteer 2">
+                        <img src="dokum(2).jpeg" alt="Dokumentasi Volunteer 2" loading="lazy">
                     </div>
                     <div class="mySlides fade-slide-anim">
-                        <img src="dokum(3).jpeg" alt="Dokumentasi Volunteer 3">
+                        <img src="dokum(3).jpeg" alt="Dokumentasi Volunteer 3" loading="lazy">
                     </div>
                     <div class="mySlides fade-slide-anim">
-                        <img src="dokum(4).jpeg" alt="Dokumentasi Volunteer 4">
+                        <img src="dokum(4).jpeg" alt="Dokumentasi Volunteer 4" loading="lazy">
                     </div>
                     
                     <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
@@ -1016,17 +922,25 @@
         </div>
     </section>
 
+    <!-- Tombol Back to Top -->
+    <button id="backToTopBtn" title="Kembali ke atas">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 15.75l7.5-7.5 7.5 7.5" />
+        </svg>
+    </button>
+
     <footer>
         <p>&copy; 2026 <span>Mhd.Iqbal</span>. Dibuat dengan dedikasi.</p>
     </footer>
 
     <script>
         document.addEventListener("DOMContentLoaded", function() {
-            // 1. Logika Interaksi Sidebar Menu (Garis 3 / Hamburger)
+            // 1. SISTEM ROUTING TAB NAVIGATION (Tanpa Scroll Panjang)
+            const navLinks = document.querySelectorAll('.nav-link, .nav-link-btn');
+            const sections = document.querySelectorAll('.page-section');
             const hamburger = document.getElementById('hamburger-menu');
             const navMenu = document.getElementById('nav-menu');
             const menuOverlay = document.getElementById('menu-overlay');
-            const navLinks = document.querySelectorAll('.nav-link');
 
             function toggleMenu() {
                 hamburger.classList.toggle('active');
@@ -1037,16 +951,35 @@
             hamburger.addEventListener('click', toggleMenu);
             menuOverlay.addEventListener('click', toggleMenu);
 
-            // Tutup laci otomatis saat salah satu menu diklik
+            // Fungsi untuk pindah halaman saat menu diklik
             navLinks.forEach(link => {
-                link.addEventListener('click', () => {
-                    if (navMenu.classList.contains('active')) {
-                        toggleMenu();
+                link.addEventListener('click', function(e) {
+                    const targetId = this.getAttribute('href');
+                    
+                    if (targetId.startsWith('#')) {
+                        e.preventDefault(); // Mencegah lompatan browser bawaan
+                        
+                        // Sembunyikan semua section
+                        sections.forEach(sec => sec.classList.remove('active-section'));
+                        
+                        // Tampilkan target section dengan animasi
+                        const targetSection = document.querySelector(targetId);
+                        if (targetSection) {
+                            targetSection.classList.add('active-section');
+                        }
+                        
+                        // Kembalikan layar ke posisi paling atas secara otomatis
+                        window.scrollTo({ top: 0, behavior: 'smooth' });
+
+                        // Tutup laci jika sedang terbuka
+                        if (navMenu.classList.contains('active')) {
+                            toggleMenu();
+                        }
                     }
                 });
             });
 
-            // 2. Logika Mode Gelap (Dark Mode) di Sidebar
+            // 2. Logika Mode Gelap (Dark Mode)
             const themeToggleBtn = document.getElementById('theme-toggle');
             const themeText = document.getElementById('theme-text');
             const moonIcon = document.getElementById('moon-icon');
@@ -1062,7 +995,6 @@
 
             themeToggleBtn.addEventListener('click', () => {
                 body.classList.toggle('dark-mode');
-                
                 if (body.classList.contains('dark-mode')) {
                     localStorage.setItem('theme', 'dark');
                     moonIcon.style.display = 'none';
@@ -1091,6 +1023,9 @@
                 const currentText = textArray[textIndex];
                 const typedTextElement = document.getElementById("typed-text");
                 
+                // Pastikan elemen text ada sebelum menjalankan (karena sistem tab navigation)
+                if(!typedTextElement) return;
+
                 if (isDeleting) {
                     typedTextElement.textContent = currentText.substring(0, charIndex - 1);
                     charIndex--;
@@ -1109,29 +1044,49 @@
                     textIndex = (textIndex + 1) % textArray.length;
                     typeSpeed = 500; 
                 }
-
                 setTimeout(typeEffect, typeSpeed);
             }
             typeEffect(); 
 
-            // 4. Logika Animasi Scroll
+            // 4. Logika Animasi Scroll Muncul (Fade In)
             const faders = document.querySelectorAll('.fade-in-scroll');
             const appearOptions = { threshold: 0.15, rootMargin: "0px 0px -50px 0px" };
             const appearOnScroll = new IntersectionObserver(function(entries, appearOnScroll) {
                 entries.forEach(entry => {
                     if (!entry.isIntersecting) return;
                     entry.target.classList.add('is-visible');
+                    // Stop mengawasi jika sudah muncul
                     appearOnScroll.unobserve(entry.target);
                 });
             }, appearOptions);
 
             faders.forEach(fader => { appearOnScroll.observe(fader); });
 
-            // 5. Mulai Slideshow saat web dimuat
+            // 5. Mulai Slideshow
             initSlideshow();
         });
 
-        // 6. Logika Fungsi Slideshow
+        // 6. Logika Progress Bar & Back to Top 
+        window.onscroll = function() { handleScroll() };
+        function handleScroll() {
+            var winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            var height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            var scrolled = (winScroll / height) * 100;
+            document.getElementById("myBar").style.width = scrolled + "%";
+
+            const backToTopBtn = document.getElementById("backToTopBtn");
+            if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
+                backToTopBtn.style.display = "block";
+            } else {
+                backToTopBtn.style.display = "none";
+            }
+        }
+
+        document.getElementById("backToTopBtn").addEventListener("click", function() {
+            window.scrollTo({ top: 0, behavior: "smooth" });
+        });
+
+        // 7. Logika Slideshow
         let slideIndex = 1;
         let slideTimer;
 
