@@ -74,80 +74,43 @@
 
         /* Pengaturan Dasar */
         * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Inter', sans-serif;
-            scroll-behavior: smooth;
+            margin: 0; padding: 0; box-sizing: border-box;
+            font-family: 'Inter', sans-serif; scroll-behavior: smooth;
         }
         body {
-            background-color: var(--bg-body);
-            color: var(--text-main);
-            line-height: 1.6;
-            overflow-x: hidden;
-            width: 100%;
+            background-color: var(--bg-body); color: var(--text-main);
+            line-height: 1.6; overflow-x: hidden; width: 100%;
             transition: background-color 0.3s ease, color 0.3s ease;
         }
-        a {
-            text-decoration: none;
-            color: inherit;
-        }
+        a { text-decoration: none; color: inherit; }
 
         /* ==================================================
            SISTEM HALAMAN VIRTUAL (TAB NAVIGATION)
            ================================================== */
-        .page-section {
-            display: none; 
-            animation: fadeInPage 0.6s ease-out forwards;
-        }
+        .page-section { display: none; animation: fadeInPage 0.6s ease-out forwards; }
         #beranda.active-section { display: flex; }
-        #profil.active-section, 
-        #pengalaman.active-section, 
-        #prestasi.active-section { display: block; }
-
-        @keyframes fadeInPage {
-            from { opacity: 0; transform: translateY(15px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
+        #pengalaman.active-section, #prestasi.active-section { display: block; }
+        @keyframes fadeInPage { from { opacity: 0; transform: translateY(15px); } to { opacity: 1; transform: translateY(0); } }
 
         /* SCROLL PROGRESS BAR */
-        .progress-container {
-            width: 100%; height: 4px; background: transparent;
-            position: fixed; top: 0; z-index: 1002;
-        }
-        .progress-bar {
-            height: 4px; background: var(--primary-color);
-            width: 0%; transition: width 0.1s ease;
-        }
+        .progress-container { width: 100%; height: 4px; background: transparent; position: fixed; top: 0; z-index: 1002; }
+        .progress-bar { height: 4px; background: var(--primary-color); width: 0%; transition: width 0.1s ease; }
 
         /* Navigasi Header */
         nav {
-            background-color: var(--nav-bg);
-            backdrop-filter: blur(5px);
-            box-shadow: 0 2px 4px var(--shadow-color);
-            padding: 15px 5%;
-            position: fixed;
-            width: 100%;
-            top: 4px; 
-            z-index: 1000;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+            background-color: var(--nav-bg); backdrop-filter: blur(5px);
+            box-shadow: 0 2px 4px var(--shadow-color); padding: 15px 5%;
+            position: fixed; width: 100%; top: 4px; z-index: 1000;
+            display: flex; justify-content: space-between; align-items: center;
             transition: background-color 0.3s ease;
         }
-        .logo {
-            font-weight: 700; font-size: 1.5rem;
-            color: var(--heading-color); letter-spacing: 1px; z-index: 1001; 
-        }
+        .logo { font-weight: 700; font-size: 1.5rem; color: var(--heading-color); letter-spacing: 1px; z-index: 1001; }
 
         /* Ikon Hamburger */
-        .hamburger {
-            display: flex; flex-direction: column; gap: 6px;
-            cursor: pointer; z-index: 1001; padding: 5px;
-        }
+        .hamburger { display: flex; flex-direction: column; gap: 6px; cursor: pointer; z-index: 1001; padding: 5px; }
         .hamburger span {
-            display: block; width: 30px; height: 3px;
-            background-color: var(--heading-color); border-radius: 3px; transition: all 0.3s ease;
+            display: block; width: 30px; height: 3px; background-color: var(--heading-color);
+            border-radius: 3px; transition: all 0.3s ease;
         }
         .hamburger.active span:nth-child(1) { transform: translateY(9px) rotate(45deg); }
         .hamburger.active span:nth-child(2) { opacity: 0; }
@@ -155,19 +118,16 @@
 
         /* Laci Menu */
         .nav-menu {
-            position: fixed; top: 0; right: -100%;
-            width: 100%; max-width: 320px; height: 100vh;
+            position: fixed; top: 0; right: -100%; width: 100%; max-width: 320px; height: 100vh;
             background-color: var(--card-bg); box-shadow: -5px 0 20px var(--shadow-color);
             display: flex; flex-direction: column; padding: 90px 30px 30px; 
-            transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            z-index: 999; overflow-y: auto;
+            transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1); z-index: 999; overflow-y: auto;
         }
         .nav-menu.active { right: 0; }
         
         .nav-link {
             font-size: 1.15rem; font-weight: 600; color: var(--heading-color);
-            padding: 16px 0; border-bottom: 1px solid var(--border-color);
-            transition: color 0.3s, padding-left 0.3s;
+            padding: 16px 0; border-bottom: 1px solid var(--border-color); transition: color 0.3s, padding-left 0.3s;
         }
         .nav-link:hover, .nav-link.active-menu { color: var(--primary-color); padding-left: 10px; }
         
@@ -185,9 +145,7 @@
             border-radius: 8px; padding: 14px 20px; margin-top: 25px; justify-content: center;
             transition: background-color 0.3s, transform 0.3s;
         }
-        .menu-action-btn.email-btn:hover {
-            background-color: var(--primary-hover); transform: translateY(-2px); padding-left: 20px; 
-        }
+        .menu-action-btn.email-btn:hover { background-color: var(--primary-hover); transform: translateY(-2px); padding-left: 20px; }
 
         .menu-overlay {
             position: fixed; top: 0; left: 0; width: 100%; height: 100vh;
@@ -196,22 +154,19 @@
         }
         .menu-overlay.active { opacity: 1; visibility: visible; }
 
-        /* Hero Section */
+        /* Hero Section (Beranda) */
         .hero {
             position: relative; min-height: 100vh; background-color: var(--hero-bg);
             flex-direction: column; align-items: center; padding-bottom: 60px; width: 100%;
             transition: background-color 0.3s ease;
         }
         .cover-banner {
-            position: absolute; top: 0; left: 0; width: 100%;
-            height: 40vh; min-height: 300px;
-            background-image: url('Sampul linkedin.png'); background-size: cover;
-            background-position: center; z-index: 0;
+            position: absolute; top: 0; left: 0; width: 100%; height: 40vh; min-height: 300px;
+            background-image: url('Sampul linkedin.png'); background-size: cover; background-position: center; z-index: 0;
         }
         .cover-banner::after {
             content: ''; position: absolute; bottom: 0; left: 0; width: 100%; height: 150px;
-            background: linear-gradient(to bottom, transparent, var(--hero-bg));
-            transition: background 0.3s ease;
+            background: linear-gradient(to bottom, transparent, var(--hero-bg)); transition: background 0.3s ease;
         }
 
         .hero-content {
@@ -219,22 +174,9 @@
             align-items: center; text-align: center; margin-top: calc(40vh - 125px);
             padding: 0 20px; width: 100%; max-width: 1200px;
         }
-        .profile-img {
-            width: 220px; height: 250px; object-fit: cover; border-radius: 16px;
-            box-shadow: 0 10px 25px var(--shadow-color); margin-bottom: 20px;
-            border: 6px solid var(--hero-bg); background-color: var(--card-bg);
-            transition: border-color 0.3s ease, background-color 0.3s ease;
-        }
-        .hero h1 { font-size: 3.2rem; color: var(--heading-color); margin-bottom: 5px; font-weight: 700; }
-        
-        .hero h2 {
-            font-size: 1.25rem; font-weight: 600; color: var(--primary-color);
-            margin-bottom: 25px; min-height: 30px;
-        }
-        .cursor {
-            display: inline-block; font-weight: bold; color: var(--primary-color);
-            animation: blink 0.8s infinite;
-        }
+        .hero h1 { font-size: 3.2rem; color: var(--heading-color); margin-bottom: 5px; font-weight: 700; margin-top: 20px;}
+        .hero h2 { font-size: 1.25rem; font-weight: 600; color: var(--primary-color); margin-bottom: 25px; min-height: 30px; }
+        .cursor { display: inline-block; font-weight: bold; color: var(--primary-color); animation: blink 0.8s infinite; }
         @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
         
         .contact-info {
@@ -253,15 +195,13 @@
         .contact-value a:hover { color: var(--primary-hover); text-decoration: underline; }
 
         .bio-text {
-            max-width: 850px; color: var(--text-muted); margin-bottom: 40px;
+            max-width: 850px; color: var(--text-muted); margin-bottom: 30px;
             font-size: 1.05rem; text-align: justify; text-align-last: center;
             line-height: 1.8; padding: 0 15px; width: 100%;
         }
 
         /* Tombol Utama */
-        .btn-container {
-            display: flex; gap: 15px; flex-wrap: wrap; justify-content: center; width: 100%;
-        }
+        .btn-container { display: flex; gap: 15px; flex-wrap: wrap; justify-content: center; width: 100%; margin-bottom: 40px; }
         .btn {
             background-color: var(--primary-color); color: white !important;
             padding: 12px 25px; border-radius: 8px; font-weight: 600;
@@ -269,106 +209,90 @@
             display: inline-flex; align-items: center; justify-content: center; gap: 8px; cursor: pointer;
         }
         .btn:hover { background-color: var(--primary-hover); transform: translateY(-2px); }
-        .btn-outline {
-            background-color: transparent; color: var(--primary-color) !important;
-            border: 2px solid var(--primary-color);
-        }
+        .btn-outline { background-color: transparent; color: var(--primary-color) !important; border: 2px solid var(--primary-color); }
         .btn-outline:hover { background-color: var(--primary-color); color: white !important; }
 
-        /* BACK TO TOP BUTTON */
-        #backToTopBtn {
-            display: none; position: fixed; bottom: 30px; right: 30px; z-index: 99;
-            font-size: 18px; border: none; outline: none; background-color: var(--primary-color);
-            color: white; cursor: pointer; padding: 14px; border-radius: 50%;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.3); transition: background-color 0.3s, transform 0.3s;
+        /* ==================================================
+           TATA LETAK BARU BERANDA (FOTO + KEAHLIAN)
+           ================================================== */
+        .hero-bottom-grid {
+            display: flex; align-items: flex-start; justify-content: center;
+            gap: 40px; width: 100%; max-width: 1000px; margin-top: 10px;
+            text-align: left;
         }
-        #backToTopBtn:hover { background-color: var(--primary-hover); transform: translateY(-5px); }
-        #backToTopBtn svg { width: 24px; height: 24px; }
-
-        /* Bagian Konten Global */
-        section { padding: 90px 5%; width: 100%; }
-        .section-title {
-            text-align: center; font-size: 2.2rem; color: var(--heading-color); 
-            margin-bottom: 60px; position: relative; font-weight: 700; padding-top: 20px; 
+        .hero-photo-wrapper { flex-shrink: 0; }
+        .profile-img-new {
+            width: 250px; height: 300px; object-fit: cover; border-radius: 16px;
+            box-shadow: 0 10px 25px var(--shadow-color); border: 6px solid var(--card-bg);
+            background-color: var(--card-bg); transition: border-color 0.3s ease, background-color 0.3s ease;
         }
-        .section-title::after {
-            content: ''; display: block; width: 70px; height: 4px;
-            background-color: var(--primary-color); margin: 15px auto 0; border-radius: 2px;
-        }
-
-        /* Profil & Keahlian */
-        .grid-2 {
-            display: grid; grid-template-columns: 1fr 1fr; gap: 40px; 
-            max-width: 1100px; margin: 0 auto; width: 100%;
-        }
+        .hero-skills-wrapper { flex-grow: 1; width: 100%; }
+        
         .info-card {
-            background: var(--card-bg); padding: 35px; border-radius: 16px; 
+            background: var(--card-bg); padding: 30px; border-radius: 16px; 
             box-shadow: 0 4px 15px var(--shadow-color); border: 1px solid var(--border-color); 
             width: 100%; transition: background-color 0.3s ease, border-color 0.3s ease;
         }
         .info-card h3 {
-            color: var(--heading-color); margin-bottom: 20px; border-bottom: 2px solid var(--date-bg);
-            padding-bottom: 12px; font-size: 1.3rem;
+            color: var(--heading-color); margin-bottom: 20px; font-size: 1.25rem; font-weight: 700;
         }
-        
-        .education-list li { padding-left: 0 !important; margin-bottom: 20px; }
+        .education-list li { padding-left: 0 !important; margin-bottom: 15px; }
         .education-list li::before { display: none !important; }
-        .hidden-link {
-            display: flex; align-items: center; gap: 15px; color: inherit; 
-            text-decoration: none; transition: transform 0.2s ease;
-        }
+        .hidden-link { display: flex; align-items: center; gap: 15px; color: inherit; text-decoration: none; transition: transform 0.2s ease; }
         .hidden-link:hover { text-decoration: none; transform: translateX(5px); }
-        .edu-logo {
-            width: 60px; height: 60px; object-fit: contain; flex-shrink: 0;
-            background: white; border-radius: 8px; padding: 2px;
-        }
+        .edu-logo { width: 50px; height: 50px; object-fit: contain; flex-shrink: 0; background: white; border-radius: 8px; padding: 2px; }
         .edu-date { color: var(--text-muted); font-size: 0.85rem; font-weight: 600; }
-
         .skill-list { list-style: none; }
-        .skill-list li {
-            margin-bottom: 12px; padding-left: 25px; position: relative; 
-            font-size: 0.95rem; color: var(--text-main);
+        .skill-list li { margin-bottom: 10px; padding-left: 25px; position: relative; font-size: 0.95rem; color: var(--text-main); }
+        .skill-list li::before { content: '▹'; color: var(--primary-color); font-weight: bold; position: absolute; left: 0; font-size: 1.2rem; top: -2px; }
+
+        /* ==================================================
+           TOMBOL KEMBALI (BACK BUTTON)
+           ================================================== */
+        .btn-back {
+            display: inline-flex; align-items: center; gap: 8px; font-weight: 600;
+            color: var(--text-main); background: transparent; border: none; cursor: pointer;
+            margin-bottom: 30px; font-size: 1rem; transition: color 0.3s ease, transform 0.2s ease;
         }
-        .skill-list li::before {
-            content: '▹'; color: var(--primary-color); font-weight: bold;
-            position: absolute; left: 0; font-size: 1.2rem; top: -2px;
-        }
+        .btn-back:hover { color: var(--primary-color); transform: translateX(-5px); }
+        .btn-back svg { width: 20px; height: 20px; }
 
         /* Pengalaman & Prestasi Section */
-        #pengalaman, #prestasi {
-            background-color: var(--section-alt-bg);
-            transition: background-color 0.3s ease;
+        #pengalaman, #prestasi { background-color: var(--bg-body); transition: background-color 0.3s ease; padding-top: 100px; }
+        .section-title {
+            text-align: left; font-size: 2.2rem; color: var(--heading-color); 
+            margin-bottom: 40px; position: relative; font-weight: 700;
         }
-        .timeline {
-            max-width: 900px; margin: 0 auto; position: relative; width: 100%;
+        .section-title::after {
+            content: ''; display: block; width: 70px; height: 4px;
+            background-color: var(--primary-color); margin: 15px 0 0; border-radius: 2px;
         }
+
+        /* Judul Kategori di Pengalaman */
+        .category-title {
+            font-size: 1.5rem; color: var(--primary-color); text-align: left; 
+            margin: 50px 0 25px; border-bottom: 2px solid var(--date-bg); 
+            padding-bottom: 10px; font-weight: 700;
+        }
+
+        .timeline { max-width: 900px; margin: 0 auto; position: relative; width: 100%; }
         .timeline-item {
             background: var(--card-bg); padding: 30px; border-radius: 16px;
             box-shadow: 0 4px 15px var(--shadow-color); margin-bottom: 25px;
             border-left: 5px solid var(--primary-color); border-right: 1px solid var(--border-color);
             border-top: 1px solid var(--border-color); border-bottom: 1px solid var(--border-color);
-            transition: transform 0.3s ease, border-color 0.3s ease, background-color 0.3s ease;
-            width: 100%;
+            transition: transform 0.3s ease, border-color 0.3s ease, background-color 0.3s ease; width: 100%;
         }
         .timeline-item:hover {
             transform: translateX(5px) scale(1.01); border-left-color: var(--primary-hover);
             box-shadow: 0 8px 25px var(--shadow-color);
         }
         
-        /* Modifikasi Judul Acara (H3) & Posisi (H4) */
-        .timeline-item h3 { 
-            color: var(--heading-color); font-size: 1.25rem; margin-bottom: 5px; 
-        }
-        .timeline-item h3 a { 
-            color: inherit; text-decoration: none; cursor: pointer; transition: color 0.3s ease; 
-        }
-        .timeline-item h3 a:hover { 
-            color: var(--primary-color); 
-        }
-        
-        .timeline-item h4 { 
-            color: var(--primary-color); font-size: 1rem; font-weight: 600; margin-bottom: 12px; 
-        }
+        /* Modifikasi Judul Acara (H3) & Posisi (H4) DIBALIK */
+        .timeline-item h3 { color: var(--heading-color); font-size: 1.25rem; margin-bottom: 5px; }
+        .timeline-item h3 a { color: inherit; text-decoration: none; cursor: pointer; transition: color 0.3s ease; }
+        .timeline-item h3 a:hover { color: var(--primary-color); }
+        .timeline-item h4 { color: var(--primary-color); font-size: 1rem; font-weight: 600; margin-bottom: 12px; }
 
         .timeline-item .date {
             font-size: 0.85rem; color: var(--text-muted); margin-bottom: 15px;
@@ -379,23 +303,17 @@
         .timeline-item ul li { margin-bottom: 8px; }
         .timeline-item p { color: var(--text-muted); font-size: 0.95rem; margin-bottom: 15px; line-height: 1.6; }
 
-        /* Slideshow Foto */
+        /* Slideshow Foto Volunteer */
         .slideshow-container {
             max-width: 100%; position: relative; margin: 20px auto;
             border-radius: 12px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            cursor: pointer; /* Memberitahu bahwa bisa diklik */
         }
         .mySlides { display: none; }
         .mySlides img {
-            width: 100%; height: 300px; object-fit: cover;
+            width: 100%; height: 350px; object-fit: cover;
             border-radius: 12px; display: block;
         }
-        .prev, .next {
-            cursor: pointer; position: absolute; top: 50%; width: auto; margin-top: -22px; 
-            padding: 12px 16px; color: white; font-weight: bold; font-size: 18px;
-            transition: 0.3s ease; border-radius: 0 4px 4px 0; background-color: rgba(0,0,0,0.4); user-select: none;
-        }
-        .next { right: 0; border-radius: 4px 0 0 4px; }
-        .prev:hover, .next:hover { background-color: rgba(0,0,0,0.8); }
         .dot-container { text-align: center; margin-top: 10px; margin-bottom: 20px; }
         .dot {
             cursor: pointer; height: 10px; width: 10px; margin: 0 3px; background-color: var(--border-color); 
@@ -404,6 +322,16 @@
         .active-dot, .dot:hover { background-color: var(--primary-color); }
         .fade-slide-anim { animation-name: fadeAnimation; animation-duration: 1.5s; }
         @keyframes fadeAnimation { from {opacity: .4} to {opacity: 1} }
+
+        /* Tombol Mengambang (Back to Top) */
+        #backToTopBtn {
+            display: none; position: fixed; bottom: 30px; right: 30px; z-index: 99;
+            font-size: 18px; border: none; outline: none; background-color: var(--primary-color);
+            color: white; cursor: pointer; padding: 14px; border-radius: 50%;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3); transition: background-color 0.3s, transform 0.3s;
+        }
+        #backToTopBtn:hover { background-color: var(--primary-hover); transform: translateY(-5px); }
+        #backToTopBtn svg { width: 24px; height: 24px; }
 
         footer {
             background-color: #0b1120; color: #94a3b8; text-align: center;
@@ -426,7 +354,6 @@
             nav { padding: 15px 5%; }
             .cover-banner { height: 25vh; min-height: 220px; }
             .hero-content { margin-top: calc(25vh - 75px); padding: 0 15px; }
-            .profile-img { width: 150px; height: 180px; border-width: 4px; margin-bottom: 15px; }
             .hero h1 { font-size: 2rem; }
             .hero h2 { font-size: 0.95rem; padding: 0 10px; min-height: 50px; }
             
@@ -439,12 +366,18 @@
             .bio-text { font-size: 0.95rem; text-align: justify; text-align-last: center; padding: 0 15px; }
             .btn-container { flex-direction: column; width: 100%; max-width: 250px; }
             .btn { text-align: center; width: 100%; justify-content: center; }
-            section { padding: 50px 15px; }
-            .section-title { font-size: 1.8rem; margin-bottom: 35px; }
-            .grid-2 { grid-template-columns: 1fr; gap: 20px; }
-            .info-card { padding: 25px 15px; }
+            
+            /* Tampilan Grid HP Baru */
+            .hero-bottom-grid { flex-direction: column; align-items: center; gap: 20px; }
+            .profile-img-new { width: 180px; height: 230px; }
+            .info-card { padding: 20px 15px; }
+            
+            section { padding: 70px 15px 50px; }
+            .section-title { font-size: 1.8rem; margin-bottom: 30px; text-align: center; }
+            .section-title::after { margin: 15px auto 0; }
+            .category-title { font-size: 1.3rem; margin: 40px 0 20px; }
             .timeline-item { padding: 20px 15px; }
-            .mySlides img { height: 200px; }
+            .mySlides img { height: 220px; }
             
             #backToTopBtn { bottom: 20px; right: 20px; padding: 10px; }
         }
@@ -472,9 +405,8 @@
         
         <div class="nav-menu" id="nav-menu">
             <a href="#beranda" class="nav-link">Beranda</a>
-            <a href="#profil" class="nav-link">Keahlian</a>
             <a href="#pengalaman" class="nav-link">Pengalaman</a>
-            <a href="#prestasi" class="nav-link">Volunteer & Prestasi</a>
+            <a href="#prestasi" class="nav-link">Prestasi</a>
             
             <button id="theme-toggle" class="menu-action-btn" title="Ganti Tema">
                 <svg id="moon-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -503,11 +435,10 @@
         </div>
     </nav>
 
-    <!-- CLASS active-section MENANDAKAN HALAMAN YANG SEDANG DIBUKA -->
+    <!-- HALAMAN BERANDA -->
     <section id="beranda" class="hero page-section active-section">
         <div class="cover-banner"></div>
         <div class="hero-content">
-            <img src="Pas Foto.jpg" alt="Foto Profil Mhd.Iqbal" class="profile-img animate-load">
             
             <h1 class="animate-load delay-1">Mhd.Iqbal</h1>
             <h2 class="animate-load delay-1"><span id="typed-text"></span><span class="cursor">|</span></h2>
@@ -535,65 +466,94 @@
                 Perkenalkan, saya Mhd.Iqbal, pemuda asal Padang Pariaman yang lahir pada 13 April 2007. Saat ini, saya tengah menempuh pendidikan sebagai mahasiswa program studi Perencanaan Wilayah dan Kota di Institut Teknologi Sumatera (ITERA). Di samping memfokuskan diri pada dunia akademik, analisis ruang, dan pemetaan wilayah, saya juga memiliki dedikasi tinggi dalam berorganisasi dan berkarya di bidang kreatif. Berbekal pengalaman memimpin divisi hingga menjadi koordinator operasional lapangan di berbagai kepanitiaan berskala institusi, saya terlatih untuk mengelola logistik, merancang strategi mobilisasi, dan memecahkan tantangan secara taktis. Saya merupakan individu yang adaptif, komunikatif, dan selalu mengutamakan kerja sama tim demi tercapainya target secara profesional.
             </p>
             
-            <!-- Tombol Beranda Lengkap -->
+            <!-- Tombol Beranda -->
             <div class="btn-container animate-load delay-4">
-                <a href="#profil" class="btn btn-outline nav-link-btn">Lihat Keahlian</a>
-                <a href="#pengalaman" class="btn nav-link-btn">Lihat Pengalaman</a>
-                <a href="#prestasi" class="btn btn-outline nav-link-btn">Volunteer & Prestasi</a>
+                <a href="#pengalaman" class="btn nav-link-btn">Pengalaman</a>
+                <a href="#prestasi" class="btn btn-outline nav-link-btn">Prestasi</a>
             </div>
+
+            <!-- TATA LETAK BARU: FOTO & KEAHLIAN BERDAMPINGAN -->
+            <div class="hero-bottom-grid animate-load delay-4">
+                <!-- Sisi Kiri: Foto -->
+                <div class="hero-photo-wrapper">
+                    <img src="Pas Foto.jpg" alt="Foto Profil Mhd.Iqbal" class="profile-img-new">
+                </div>
+                <!-- Sisi Kanan: Pendidikan & Keahlian -->
+                <div class="hero-skills-wrapper">
+                    <div class="info-card">
+                        <h3>Pendidikan & Keahlian</h3>
+                        
+                        <!-- Pendidikan -->
+                        <ul class="skill-list education-list">
+                            <li>
+                                <a href="https://www.itera.ac.id/" target="_blank" class="hidden-link">
+                                    <img src="Logo ITERA.png" alt="Logo ITERA" class="edu-logo" loading="lazy">
+                                    <div>
+                                        <strong style="font-size: 1.05rem;">Institut Teknologi Sumatera (ITERA)</strong><br>
+                                        Program Studi Perencanaan Wilayah dan Kota<br>
+                                        <span class="edu-date">2025 - Sekarang</span>
+                                    </div>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://www.instagram.com/sman1.enamlingkung" target="_blank" class="hidden-link">
+                                    <img src="Logo Smanel.png" alt="Logo SMANEL" class="edu-logo" loading="lazy">
+                                    <div>
+                                        <strong style="font-size: 1.05rem;">SMAN 1 Enam Lingkung, Sumatera Barat</strong><br>
+                                        Jurusan MIPA<br>
+                                        <span class="edu-date">2022 - 2025</span>
+                                    </div>
+                                </a>
+                            </li>
+                        </ul>
+
+                        <hr style="border: 0; border-top: 1px solid var(--border-color); margin: 20px 0;">
+
+                        <!-- Keahlian -->
+                        <ul class="skill-list" style="margin-top: 20px;">
+                            <li><strong>Software & Alat Pemetaan:</strong> ArcMap (GIS)</li>
+                            <li><strong>Desain & Media Kreatif:</strong> Canva, Videografi</li>
+                            <li><strong>Aplikasi Perkantoran:</strong> Microsoft Word, PowerPoint</li>
+                            <li><strong>Teknis Operasional:</strong> Koordinasi Lapangan & Mobilisasi Massa</li>
+                            <li><strong>Manajemen Kegiatan:</strong> Pengelolaan Logistik & Penyusunan SOP</li>
+                            <li><strong>Soft Skills Utama:</strong> Kepemimpinan & Manajemen Tim, Komunikasi Interpersonal, Manajemen Waktu, Adaptabilitas & Problem Solving.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
         </div>
     </section>
 
-    <!-- SECTION PROFIL -->
-    <section id="profil" class="page-section">
-        <h2 class="section-title fade-in-scroll">Pendidikan & Keahlian</h2>
-        <div class="grid-2">
-            
-            <div class="info-card fade-in-scroll">
-                <h3>Riwayat Pendidikan</h3>
-                <ul class="skill-list education-list">
-                    <li>
-                        <a href="https://www.itera.ac.id/" target="_blank" class="hidden-link">
-                            <img src="Logo ITERA.png" alt="Logo ITERA" class="edu-logo" loading="lazy">
-                            <div>
-                                <strong style="font-size: 1.05rem;">Institut Teknologi Sumatera (ITERA)</strong><br>
-                                Program Studi Perencanaan Wilayah dan Kota<br>
-                                <span class="edu-date">2025 - Sekarang</span>
-                            </div>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="https://www.instagram.com/sman1.enamlingkung" target="_blank" class="hidden-link">
-                            <img src="Logo Smanel.png" alt="Logo SMANEL" class="edu-logo" loading="lazy">
-                            <div>
-                                <strong style="font-size: 1.05rem;">SMAN 1 Enam Lingkung, Sumatera Barat</strong><br>
-                                Jurusan MIPA<br>
-                                <span class="edu-date">2022 - 2025</span>
-                            </div>
-                        </a>
-                    </li>
-                </ul>
-            </div>
-            
-            <div class="info-card fade-in-scroll">
-                <h3>Keahlian (Skills)</h3>
-                <ul class="skill-list">
-                    <li><strong>Software & Alat Pemetaan:</strong> ArcMap (GIS)</li>
-                    <li><strong>Desain & Media Kreatif:</strong> Canva, Videografi</li>
-                    <li><strong>Aplikasi Perkantoran:</strong> Microsoft Word, PowerPoint</li>
-                    <li><strong>Teknis Operasional:</strong> Koordinasi Lapangan & Mobilisasi Massa</li>
-                    <li><strong>Manajemen Kegiatan:</strong> Pengelolaan Logistik & Penyusunan SOP</li>
-                    <li><strong>Soft Skills Utama:</strong> Kepemimpinan & Manajemen Tim, Komunikasi Interpersonal, Manajemen Waktu, Adaptabilitas & Problem Solving.</li>
-                </ul>
-            </div>
-        </div>
-    </section>
-
-    <!-- SECTION PENGALAMAN (POSISI DAN ACARA DIBALIK) -->
+    <!-- HALAMAN PENGALAMAN -->
     <section id="pengalaman" class="page-section">
-        <h2 class="section-title fade-in-scroll">Pengalaman Organisasi & Kepanitiaan</h2>
-        <div class="timeline">
+        <div class="timeline" style="margin-top: 20px;">
+            <!-- Tombol Kembali -->
+            <button onclick="goToBeranda()" class="btn-back fade-in-scroll">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18" />
+                </svg>
+                Kembali ke Beranda
+            </button>
             
+            <h2 class="section-title fade-in-scroll">Pengalaman</h2>
+
+            <!-- 1. KATEGORI ORGANISASI -->
+            <h3 class="category-title fade-in-scroll">Pengalaman Organisasi</h3>
+            
+            <div class="timeline-item fade-in-scroll">
+                <h3><a href="https://www.instagram.com/planologiitera2025" target="_blank">Badan Pengurus Harian (BPH) Planologi ITERA 2025</a></h3>
+                <h4>Staf Koordinator Lapangan</h4>
+                <span class="date">April 2026 - Sekarang</span>
+                <ul>
+                    <li>Membantu mobilisasi angkatan dalam suatu kegiatan internal maupun eksternal untuk memperkuat soliditas.</li>
+                    <li>Mengordinasikan pergerakan rekan angkatan secara taktis jika terdapat penugasan atau kegiatan langsung di lapangan.</li>
+                </ul>
+            </div>
+
+            <!-- 2. KATEGORI KEPANITIAAN -->
+            <h3 class="category-title fade-in-scroll">Pengalaman Kepanitiaan</h3>
+
             <div class="timeline-item fade-in-scroll">
                 <h3><a href="https://www.instagram.com/diesnatalishmp" target="_blank">Dies Natalis HMP Mandalanata ITERA ke-13</a></h3>
                 <h4>Staf Koordinator Lapangan</h4>
@@ -645,16 +605,6 @@
             </div>
 
             <div class="timeline-item fade-in-scroll">
-                <h3><a href="https://www.instagram.com/planologiitera2025" target="_blank">Badan Pengurus Harian (BPH) Planologi ITERA 2025</a></h3>
-                <h4>Staf Koordinator Lapangan</h4>
-                <span class="date">April 2026 - Sekarang</span>
-                <ul>
-                    <li>Membantu mobilisasi angkatan dalam suatu kegiatan internal maupun eksternal untuk memperkuat soliditas.</li>
-                    <li>Mengordinasikan pergerakan rekan angkatan secara taktis jika terdapat penugasan atau kegiatan langsung di lapangan.</li>
-                </ul>
-            </div>
-
-            <div class="timeline-item fade-in-scroll">
                 <h3><a href="https://www.instagram.com/planologiitera2025" target="_blank">Malam Keakraban Planologi ITERA 2025</a></h3>
                 <h4>Staf Koordinator Lapangan</h4>
                 <span class="date">Maret - Mei 2026</span>
@@ -684,30 +634,16 @@
                 </ul>
             </div>
 
-        </div>
-    </section>
-
-    <!-- SECTION VOLUNTEER & PRESTASI -->
-    <section id="prestasi" class="page-section">
-        <h2 class="section-title fade-in-scroll">Pengalaman Volunteer & Prestasi</h2>
-        <div class="timeline">
-            
-            <div class="timeline-item fade-in-scroll">
-                <h3>Festival dan Lomba Seni Siswa Nasional (FLS2N)</h3>
-                <h4>Juara 3 Lomba Film Pendek</h4>
-                <span class="date">Tingkat Kabupaten Padang Pariaman</span>
-                <p>
-                    Berhasil meraih prestasi sebagai Juara 3 dalam ajang kompetisi bergengsi FLS2N pada cabang Lomba Film Pendek, tergabung dalam tim bersama Jelita Fryzillia Adrieni, dkk.
-                </p>
-                <a href="https://id.scribd.com/document/738712322/SK-PEMENANG-FLS2N-TINGKAT-KAB-PADANG-PARIAMAN" target="_blank" class="btn btn-outline" style="padding: 8px 20px; font-size: 0.9rem; display: inline-block; margin-top: 10px;">Lihat SK Pemenang</a>
-            </div>
+            <!-- 3. KATEGORI VOLUNTEER -->
+            <h3 class="category-title fade-in-scroll">Pengalaman Volunteer</h3>
 
             <div class="timeline-item fade-in-scroll">
                 <h3><a href="https://www.instagram.com/ruangplano" target="_blank">Ruang Plano 7.0</a></h3>
                 <h4>Volunteer (Aksi Lingkungan)</h4>
                 <span class="date">November 2025</span>
                 
-                <div class="slideshow-container">
+                <!-- Kotak Slideshow PINTAR (Diklik gambar untuk ganti) -->
+                <div class="slideshow-container" onclick="plusSlides(1)" title="Klik untuk gambar selanjutnya">
                     <div class="mySlides fade-slide-anim">
                         <img src="dokum(1).jpeg" alt="Dokumentasi Volunteer 1" loading="lazy">
                     </div>
@@ -720,9 +656,6 @@
                     <div class="mySlides fade-slide-anim">
                         <img src="dokum(4).jpeg" alt="Dokumentasi Volunteer 4" loading="lazy">
                     </div>
-                    
-                    <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
-                    <a class="next" onclick="plusSlides(1)">&#10095;</a>
                 </div>
                 
                 <div class="dot-container">
@@ -741,6 +674,31 @@
         </div>
     </section>
 
+    <!-- HALAMAN PRESTASI -->
+    <section id="prestasi" class="page-section">
+        <div class="timeline" style="margin-top: 20px;">
+            <!-- Tombol Kembali -->
+            <button onclick="goToBeranda()" class="btn-back fade-in-scroll">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18" />
+                </svg>
+                Kembali ke Beranda
+            </button>
+
+            <h2 class="section-title fade-in-scroll">Prestasi</h2>
+            
+            <div class="timeline-item fade-in-scroll">
+                <h3>Festival dan Lomba Seni Siswa Nasional (FLS2N)</h3>
+                <h4>Juara 3 Lomba Film Pendek</h4>
+                <span class="date">Tingkat Kabupaten Padang Pariaman</span>
+                <p>
+                    Berhasil meraih prestasi sebagai Juara 3 dalam ajang kompetisi bergengsi FLS2N pada cabang Lomba Film Pendek, tergabung dalam tim bersama Jelita Fryzillia Adrieni, dkk.
+                </p>
+                <a href="https://id.scribd.com/document/738712322/SK-PEMENANG-FLS2N-TINGKAT-KAB-PADANG-PARIAMAN" target="_blank" class="btn btn-outline" style="padding: 8px 20px; font-size: 0.9rem; display: inline-block; margin-top: 10px;">Lihat SK Pemenang</a>
+            </div>
+        </div>
+    </section>
+
     <!-- Tombol Back to Top -->
     <button id="backToTopBtn" title="Kembali ke atas">
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor">
@@ -753,6 +711,13 @@
     </footer>
 
     <script>
+        // FUNGSI NAVIGASI KEMBALI KE BERANDA (DIGUNAKAN TOMBOL KEMBALI)
+        function goToBeranda() {
+            document.querySelectorAll('.page-section').forEach(sec => sec.classList.remove('active-section'));
+            document.getElementById('beranda').classList.add('active-section');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
         document.addEventListener("DOMContentLoaded", function() {
             // 1. SISTEM ROUTING TAB NAVIGATION
             const navLinks = document.querySelectorAll('.nav-link, .nav-link-btn');
@@ -868,6 +833,7 @@
                 entries.forEach(entry => {
                     if (!entry.isIntersecting) return;
                     entry.target.classList.add('is-visible');
+                    // Stop mengawasi jika sudah muncul
                     appearOnScroll.unobserve(entry.target);
                 });
             }, appearOptions);
